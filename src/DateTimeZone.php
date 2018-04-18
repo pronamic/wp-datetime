@@ -5,7 +5,7 @@
  * @author    Pronamic <info@pronamic.eu>
  * @copyright 2005-2018 Pronamic
  * @license   GPL-3.0-or-later
- * @package   Pronamic\WordPress\Pay
+ * @package   Pronamic\WordPress\DateTime
  * @see       https://github.com/woocommerce/woocommerce/blob/3.3.4/includes/class-wc-datetime.php
  * @see       https://github.com/Rarst/wpdatetime/
  */
