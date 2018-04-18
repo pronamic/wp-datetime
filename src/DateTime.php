@@ -34,13 +34,18 @@ class DateTime extends \DateTime {
 	 *
 	 * @see https://github.com/Rarst/wpdatetime/blob/0.3/src/WpDateTimeTrait.php#L79-L104
 	 * @see https://github.com/WordPress/WordPress/blob/4.9.4/wp-includes/functions.php#L72-L151
+	 * @see https://developer.wordpress.org/reference/functions/apply_filters/
 	 *
 	 * @param string|null $format Format.
 	 *
 	 * @return string
 	 */
 	public function format_i18n( $format = null ) {
-		$format = ( null === $format ) ? __( 'D j M Y \a\t H:i', 'pronamic_ideal' ) : $format;
+		if ( is_null( $format ) ) {
+			$format =  _x( 'D j M Y \a\t H:i', 'default datetime format', 'pronamic-datetime' );
+
+			$format = apply_filters( 'pronamic_datetime_default_format', $format );
+		}
 
 		$date = clone $this;
 
