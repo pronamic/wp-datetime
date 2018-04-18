@@ -1,4 +1,9 @@
 {
-    "name": "pronamic/wp-datetime",
-    "require": {}
+	"name": "pronamic/wp-datetime",
+	"autoload": {
+		"psr-4": {
+			"Pronamic\\WordPress\\DateTime\\": "src"
+		}
+	},
+	"require": {}
 }
