@@ -15,8 +15,9 @@ namespace Pronamic\WordPress\DateTime;
 /**
  * Date time
  *
- * @author Remco Tolsma
- * @version 1.0
+ * @author  Remco Tolsma
+ * @version 1.0.0
+ * @since   1.0.0
  */
 class DateTime extends \DateTime {
 	/**
@@ -42,7 +43,7 @@ class DateTime extends \DateTime {
 	 */
 	public function format_i18n( $format = null ) {
 		if ( is_null( $format ) ) {
-			$format =  _x( 'D j M Y \a\t H:i', 'default datetime format', 'pronamic-datetime' );
+			$format = _x( 'D j M Y \a\t H:i', 'default datetime format', 'pronamic-datetime' );
 
 			$format = apply_filters( 'pronamic_datetime_default_format', $format );
 		}
