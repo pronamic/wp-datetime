@@ -56,4 +56,21 @@ class DateTime extends \DateTime {
 
 		return $result;
 	}
+
+	/**
+	 * Parse a string into a new DateTime object according to the specified format
+	 *
+	 * @param string       $format   Format accepted by date().
+	 * @param string       $time     String representing the time.
+	 * @param DateTimeZone $timezone A DateTimeZone object representing the desired time zone.
+	 *
+	 * @return DateTime|boolean
+	 *
+	 * @link http://php.net/manual/en/datetime.createfromformat.php
+	 */
+	public static function createFromFormat( $format, $time, \DateTimeZone $timezone = null ) {
+		$date = parent::createFromFormat( $format, $time, $timezone );
+
+		return new self( '@' . $date->format( 'U' ) );
+	}
 }
