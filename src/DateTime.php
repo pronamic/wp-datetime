@@ -60,9 +60,9 @@ class DateTime extends \DateTime {
 	/**
 	 * Parse a string into a new DateTime object according to the specified format
 	 *
-	 * @param string       $format   Format accepted by date().
-	 * @param string       $time     String representing the time.
-	 * @param DateTimeZone $timezone A DateTimeZone object representing the desired time zone.
+	 * @param string        $format   Format accepted by date().
+	 * @param string        $time     String representing the time.
+	 * @param \DateTimeZone $timezone A DateTimeZone object representing the desired time zone.
 	 *
 	 * @return DateTime|boolean
 	 *
