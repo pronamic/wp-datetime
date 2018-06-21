@@ -31,6 +31,16 @@ class DateTimeZone extends \DateTimeZone {
 	public static function get_default() {
 		$timezone_string = get_option( 'timezone_string' );
 
+		/**
+		 * Offset values as timezone parameter are supported since PHP 5.5.10,
+		 * use 'GMT' timezone string instead as default.
+		 *
+		 * @link http://php.net/manual/en/datetimezone.construct.php
+		 */
+		if ( empty( $timezone_string ) && version_compare( PHP_VERSION, '5.5.10', '<' ) ) {
+			$timezone_string = 'GMT';
+		}
+
 		if ( ! empty( $timezone_string ) ) {
 			return new DateTimeZone( $timezone_string );
 		}
