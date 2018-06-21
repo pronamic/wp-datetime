@@ -68,7 +68,7 @@ class DateTime extends \DateTime {
 	 *
 	 * @link http://php.net/manual/en/datetime.createfromformat.php
 	 */
-	public static function createFromFormat( $format, $time, \DateTimeZone $timezone = null ) {
+	public static function create_from_format( $format, $time, \DateTimeZone $timezone = null ) {
 		$date = parent::createFromFormat( $format, $time, $timezone );
 
 		return new self( '@' . $date->format( 'U' ) );
