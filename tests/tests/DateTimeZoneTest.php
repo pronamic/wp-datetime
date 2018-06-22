@@ -148,7 +148,7 @@ class DateTimeZoneTest extends WP_UnitTestCase {
 			array( 5.5,   'Asia/Colombo' ),
 			array( 5.75,  'Asia/Kathmandu' ),
 			array( 6,     'Antarctica/Vostok' ),
-			array( 6.5,   version_compare( PHP_VERSION, '5.5', '>' ) ? 'Asia/Yangon' : 'Asia/Rangoon' ),
+			array( 6.5,   version_compare( PHP_VERSION, '5.4', '>' ) ? 'Asia/Yangon' : 'Asia/Rangoon' ),
 			array( 7,     'Antarctica/Davis' ),
 			array( 7.5,   null ),
 			array( 8,     'Antarctica/Casey' ),
