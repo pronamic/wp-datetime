@@ -167,4 +167,44 @@ class DateTimeZoneTest extends WP_UnitTestCase {
 			array( 14,    'Pacific/Kiritimati' ),
 		);
 	}
+
+	/**
+	 * Teste datetime timezone.
+	 *
+	 * @link http://php.net/manual/en/datetime.formats.time.php
+	 *
+	 * @dataProvider provider_test_datetime_timezone
+	 *
+	 * @param string DateTime timezone string
+	 */
+	public function test_datetime_timezone( $string, $expected = null ) {
+		$date = new DateTime( $string );
+
+		$timezone = $date->getTimezone();
+
+		$expected = is_null( $expected ) ? $string : $expected;
+
+		$this->assertEquals( $expected, $timezone->getName() );
+	}
+
+	/**
+	 * Provider for test datetime timezone.
+	 *
+	 * @link http://php.net/manual/en/datetime.formats.time.php
+	 * @link https://github.com/WordPress/WordPress/blob/4.9.6/wp-includes/functions.php#L4613-L4746
+	 *
+	 * @return array
+	 */
+	public function provider_test_datetime_timezone() {
+		return array(
+			array( '-12:00' ),
+			array( '-06:00' ),
+			array( '-00:00', '+00:00' ),
+			array( '+00:00' ),
+			array( '+06:00' ),
+			array( '+08:45' ),
+			array( '+12:00' ),
+			array( '+14:00' ),
+		);
+	}
 }
