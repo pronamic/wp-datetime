@@ -69,6 +69,71 @@ class DateTimeZone extends \DateTimeZone {
 	}
 
 	/**
+	 * Get 'other' Etc/GMT timezone by the specified offset in hours.
+	 *
+	 * @link http://php.net/manual/en/timezones.others.php
+	 *
+	 * @param float $offset Timezone offset in hours.
+	 * @return string|null
+	 */
+	public static function get_other_gmt_timezone( $offset_in_hours ) {
+		if ( fmod( $offset_in_hours, 1 ) !== 0.0 ) {
+			return;
+		}
+
+		if ( $offset_in_hours < -12 || $offset_in_hours > 14 ) {
+			return;
+		}
+
+		$sign = ( $offset_in_hours < 0 ) ? '+' : '-';
+
+		return 'Etc/GMT' . $sign . intval( abs( $offset_in_hours ) );
+	}
+
+	/**
+	 * Get timezone by the specified offset in hours.
+	 *
+	 * @param float    $offset_in_hours Timezone offset in hours.
+	 * @param DateTime $date            Date.
+	 * @return string|null
+	 */
+	public static function get_timezone_from_identifiers_list_by_offset( $offset_in_hours, $date = null ) {
+		$date = ( null === $date ) ? new DateTime() : $date;
+
+		$identifiers = DateTimeZone::listIdentifiers();
+
+		$offset_in_seconds = intval( $offset_in_hours * HOUR_IN_SECONDS );
+
+		foreach ( $identifiers as $identifier ) {
+			$timezone = new DateTimeZone( $identifier );
+
+			if ( $timezone->getOffset( $date ) === $offset_in_seconds ) {
+				return $identifier;
+			}
+		}
+	}
+
+	/**
+	 * Get timezone from abbreviations list by the specified offset in hours.
+	 *
+	 * @param float $offset_in_hours Timezone offset in hours.
+	 * @return string|null
+	 */
+	public static function get_timezone_from_abbreviations_list_by_offset( $offset_in_hours ) {
+		$abbreviations = DateTimeZone::listAbbreviations();
+
+		$offset_in_seconds = intval( $offset_in_hours * HOUR_IN_SECONDS );
+
+		foreach ( $abbreviations as $abbreviation => $timezones ) {
+			foreach ( $timezones as $timezone ) {
+				if ( $timezone['offset'] === $offset_in_seconds ) {
+					return $timezone['timezone_id'];
+				}
+			}
+		}
+	}
+
+	/**
 	 * Transform offset to timezone.
 	 *
 	 * @param int|string $gmt_offset GMT offset.
