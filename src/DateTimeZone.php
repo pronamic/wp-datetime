@@ -338,6 +338,7 @@ class DateTimeZone extends \DateTimeZone {
 			'UTC',
 			'W-SU',
 			'WET',
+			'Zulu',
 		);
 	}
 }
