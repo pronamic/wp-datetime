@@ -46,7 +46,7 @@ class DateTimeZone extends \DateTimeZone {
 		 * @link http://php.net/manual/en/datetimezone.construct.php
 		 */
 		if ( version_compare( PHP_VERSION, '5.5.10', '<' ) ) {
-			$date = new DateTime( $offeset );
+			$date = new DateTime( $offset );
 
 			return $date->getTimezone();
 		}
