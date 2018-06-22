@@ -54,6 +54,21 @@ class DateTimeZone extends \DateTimeZone {
 	}
 
 	/**
+	 * Get offset.
+	 */
+	public static function get_offset( $date ) {
+		$timezone_string = get_option( 'timezone_string' );
+
+		if ( empty( $timezone_string ) ) {
+			return floatval( get_option( 'gmt_offset', 0 ) ) * HOUR_IN_SECONDS;
+		}
+
+		$timezone = new DateTimeZone( $timezone_string );
+
+		return $timezone->getOffset( $date );
+	}
+
+	/**
 	 * Transform offset to timezone.
 	 *
 	 * @param int|string $gmt_offset GMT offset.

@@ -48,11 +48,7 @@ class DateTime extends \DateTime {
 			$format = apply_filters( 'pronamic_datetime_default_format', $format );
 		}
 
-		$date = clone $this;
-
-		$date->setTimezone( DateTimeZone::get_default() );
-
-		$result = date_i18n( $format, $date->getTimestamp() + $date->getOffset(), true );
+		$result = date_i18n( $format, $this->getTimestamp() + DateTimeZone::get_offset( $this ) );
 
 		return $result;
 	}
