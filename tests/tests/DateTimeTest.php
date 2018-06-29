@@ -33,13 +33,13 @@ class DateTimeTest extends WP_UnitTestCase {
 	/**
 	 * @dataProvider provider_test_format_i18n
 	 */
-	public function test_format_i18n( $wp_timezone, $wp_gmt_offset, $expected_i18n, $date_timezone, $date_string ) {
+	public function test_format_i18n( $wp_timezone, $wp_gmt_offset, $expected_i18n, $date_string, $date_timezone ) {
 		update_option( 'timezone_string', $wp_timezone );
 		update_option( 'gmt_offset', $wp_gmt_offset );
 
 		$date = new DateTime( $date_string, new DateTimeZone( $date_timezone ) );
 
-		$this->assertEquals( $expected_i18n, $date->format_i18n( 'Y-m-d H:i:s' ) );
+		$this->assertEquals( $expected_i18n, $date->format_i18n( 'Y-m-d H:i:s P T e' ) );
 	}
 
 	/**
@@ -49,16 +49,16 @@ class DateTimeTest extends WP_UnitTestCase {
 	 */
 	public function provider_test_format_i18n() {
 		return array(
-			array( 'UTC',              null,  '2015-05-05 13:00:00', 'Europe/Amsterdam', '2015-05-05 15:00:00' ),
-			array( 'Europe/Amsterdam', null,  '2015-05-05 15:00:00', 'UTC',              '2015-05-05 13:00:00' ),
-			array( null,               2,     '2015-05-05 15:00:00', 'UTC',              '2015-05-05 13:00:00' ),
-			array( null,               12.75, '2015-05-06 01:45:00', 'UTC',              '2015-05-05 13:00:00' ),
-			array( 'UTC',              null,  '2016-03-11 10:00:00', 'Europe/Amsterdam', '2016-03-11 11:00:00' ),
-			array( 'UTC',              null,  '2016-04-11 09:00:00', 'Europe/Amsterdam', '2016-04-11 11:00:00' ),
-			array( 'Europe/Amsterdam', null,  '2016-03-11 11:00:00', 'UTC',              '2016-03-11 10:00:00' ),
-			array( 'Europe/Amsterdam', null,  '2016-04-11 11:00:00', 'UTC',              '2016-04-11 09:00:00' ),
-			array( null,               2,     '2016-03-11 12:00:00', 'UTC',              '2016-03-11 10:00:00' ),
-			array( null,               2,     '2016-04-11 11:00:00', 'UTC',              '2016-04-11 09:00:00' ),
+			array( 'UTC',              null,  '2015-05-05 13:00:00 +00:00 UTC UTC',               '2015-05-05 15:00:00', 'Europe/Amsterdam' ),
+			array( 'Europe/Amsterdam', null,  '2015-05-05 15:00:00 +02:00 CEST Europe/Amsterdam', '2015-05-05 13:00:00', 'UTC'              ),
+			array( null,               2,     '2015-05-05 15:00:00 +02:00 GMT+0200 +02:00',       '2015-05-05 13:00:00', 'UTC'              ),
+			array( null,               12.75, '2015-05-06 01:45:00 +12:45 GMT+1245 +12:45',       '2015-05-05 13:00:00', 'UTC'              ),
+			array( 'UTC',              null,  '2016-03-11 10:00:00 +00:00 UTC UTC',               '2016-03-11 11:00:00', 'Europe/Amsterdam' ),
+			array( 'UTC',              null,  '2016-04-11 09:00:00 +00:00 UTC UTC',               '2016-04-11 11:00:00', 'Europe/Amsterdam' ),
+			array( 'Europe/Amsterdam', null,  '2016-03-11 11:00:00 +01:00 CET Europe/Amsterdam',  '2016-03-11 10:00:00', 'UTC' ),
+			array( 'Europe/Amsterdam', null,  '2016-04-11 11:00:00 +02:00 CEST Europe/Amsterdam', '2016-04-11 09:00:00', 'UTC' ),
+			array( null,               2,     '2016-03-11 12:00:00 +02:00 GMT+0200 +02:00',       '2016-03-11 10:00:00', 'UTC' ),
+			array( null,               2,     '2016-04-11 11:00:00 +02:00 GMT+0200 +02:00',       '2016-04-11 09:00:00', 'UTC' ),
 		);
 	}
 }

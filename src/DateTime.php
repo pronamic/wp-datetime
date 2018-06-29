@@ -31,6 +31,116 @@ class DateTime extends \DateTime {
 	const MYSQL = 'Y-m-d H:i:s';
 
 	/**
+	 * Translate.
+	 *
+	 * @link https://github.com/WordPress/WordPress/blob/4.9.6/wp-includes/functions.php#L103-L119
+	 * @link https://github.com/WordPress/WordPress/blob/4.9.6/wp-includes/class-wp-locale.php#L116-L235
+	 *
+	 * @param string $foramt Format.
+	 *
+	 * @return string
+	 */
+	private function format_i18n_translate( $format ) {
+		global $wp_locale;
+
+		if ( empty( $wp_locale->month ) || empty( $wp_locale->weekday ) ) {
+			return $format;
+		}
+
+		$month   = $wp_locale->get_month( $this->format( 'm' ) );
+		$weekday = $wp_locale->get_weekday( $this->format( 'w' ) );
+
+		$format_length = strlen( $format );
+
+		$format_new = '';
+
+		for ( $i = 0; $i < $format_length; $i++ ) {
+			$char = $format[ $i ];
+
+			switch ( $char ) {
+				case 'D':
+					$format_new .= backslashit( $wp_locale->get_weekday_abbrev( $weekday ) );
+
+					break;
+				case 'F':
+					$format_new .= backslashit( $month );
+
+					break;
+				case 'l':
+					$format_new .= backslashit( $weekday );
+
+					break;
+				case 'M':
+					$format_new .= backslashit( $wp_locale->get_month_abbrev( $month ) );
+
+					break;
+				case 'a':
+					$format_new .= backslashit( $wp_locale->get_meridiem( $this->format( $char ) ) );
+
+					break;
+				case 'A':
+					$format_new .= backslashit( $wp_locale->get_meridiem( $this->format( $char ) ) );
+
+					break;
+				case '\\':
+					if ( $i < $format_length ) {
+						$i++;
+					}
+					// no break
+				default:
+					$format_new .= $char;
+
+					break;
+			}
+		}
+
+		return $format_new;
+	}
+
+	/**
+	 * Format I18N timezone.
+	 *
+	 * @link https://github.com/WordPress/WordPress/blob/4.9.6/wp-includes/functions.php#L120-L136
+	 * @link https://github.com/php/php-src/blob/php-7.2.7/ext/date/php_date.c#L1093-L1253
+	 *
+	 * @param string|null $format Format.
+	 *
+	 * @return string
+	 */
+	private function format_i18n_timezone( $format ) {
+		$format_length = strlen( $format );
+
+		$format_new = '';
+
+		for ( $i = 0; $i < $format_length; $i++ ) {
+			$char = $format[ $i ];
+
+			switch ( $char ) {
+				case 'P':
+				case 'I':
+				case 'O':
+				case 'T':
+				case 'Z':
+				case 'e':
+					$format_new .= backslashit( $this->format( $char ) );
+
+					break;
+				case '\\':
+					if ( $i < $format_length ) {
+						$i++;
+					}
+					// no break
+				default:
+					$format_new .= $char;
+
+					break;
+			}
+		}
+
+		return $format_new;
+	}
+
+	/**
 	 * Format I18N.
 	 *
 	 * @see https://github.com/Rarst/wpdatetime/blob/0.3/src/WpDateTimeTrait.php#L79-L104
@@ -48,7 +158,13 @@ class DateTime extends \DateTime {
 			$format = apply_filters( 'pronamic_datetime_default_format', $format );
 		}
 
-		$result = date_i18n( $format, $this->getTimestamp() + DateTimeZone::get_offset( $this ) );
+		$date = clone $this;
+		$date->setTimezone( DateTimeZone::get_default() );
+
+		$format = $date->format_i18n_translate( $format );
+		$format = $date->format_i18n_timezone( $format );
+
+		$result = date_i18n( $format, $date->getTimestamp() + DateTimeZone::get_offset( $date ) );
 
 		return $result;
 	}
