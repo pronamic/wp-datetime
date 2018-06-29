@@ -143,6 +143,41 @@ class DateTime extends \DateTime {
 	}
 
 	/**
+	 * Get WordPress timestamp.
+	 *
+	 * @return int
+	 */
+	private function get_wp_timestamp() {
+		return $this->getTimestamp() + DateTimeZone::get_offset( $this );
+	}
+
+	/**
+	 * Get local date for this date.
+	 *
+	 * @return DateTime
+	 */
+	public function get_local_date() {
+		$wp_timezone = DateTimeZone::get_default();
+
+		/**
+		 * PHP BUG: DateTime::setTimezone(): Can only do this for zones with ID for now.
+		 * PHP version < 5.426
+		 * PHP version > 5.5 < 5.5.10
+		 *
+		 * @link https://bugs.php.net/bug.php?id=45543
+		 * @link https://3v4l.org/mlZX7
+		 */
+		if ( version_compare( PHP_VERSION, '5.4.26', '<' ) || ( version_compare( PHP_VERSION, '5.5', '>' ) && version_compare( PHP_VERSION, '5.5.10', '<' ) ) ) {
+			return new DateTime( date( self::MYSQL, $this->get_wp_timestamp() ), $wp_timezone );
+		}
+
+		$date = clone $this;
+		$date->setTimezone( $wp_timezone );
+
+		return $date;
+	}
+
+	/**
 	 * Format I18N.
 	 *
 	 * @see https://github.com/Rarst/wpdatetime/blob/0.3/src/WpDateTimeTrait.php#L79-L104
@@ -160,13 +195,12 @@ class DateTime extends \DateTime {
 			$format = apply_filters( 'pronamic_datetime_default_format', $format );
 		}
 
-		$date = clone $this;
-		$date->setTimezone( DateTimeZone::get_default() );
+		$date = $this->get_local_date();
 
 		$format = $date->format_i18n_translate( $format );
 		$format = $date->format_i18n_timezone( $format );
 
-		$result = date_i18n( $format, $date->getTimestamp() + DateTimeZone::get_offset( $date ) );
+		$result = date_i18n( $format, $this->get_wp_timestamp() );
 
 		return $result;
 	}
