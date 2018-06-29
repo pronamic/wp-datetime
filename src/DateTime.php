@@ -55,9 +55,7 @@ class DateTime extends \DateTime {
 		$format_new = '';
 
 		for ( $i = 0; $i < $format_length; $i++ ) {
-			$char = $format[ $i ];
-
-			switch ( $char ) {
+			switch ( $format[ $i ] ) {
 				case 'D':
 					$format_new .= backslashit( $wp_locale->get_weekday_abbrev( $weekday ) );
 
@@ -75,20 +73,23 @@ class DateTime extends \DateTime {
 
 					break;
 				case 'a':
-					$format_new .= backslashit( $wp_locale->get_meridiem( $this->format( $char ) ) );
+					$format_new .= backslashit( $wp_locale->get_meridiem( $this->format( 'a' ) ) );
 
 					break;
 				case 'A':
-					$format_new .= backslashit( $wp_locale->get_meridiem( $this->format( $char ) ) );
+					$format_new .= backslashit( $wp_locale->get_meridiem( $this->format( 'A' ) ) );
 
 					break;
 				case '\\':
+					$format_new .= $format[ $i ];
+
 					if ( $i < $format_length ) {
 						$i++;
 					}
+
 					// no break
 				default:
-					$format_new .= $char;
+					$format_new .= $format[ $i ];
 
 					break;
 			}
@@ -113,25 +114,26 @@ class DateTime extends \DateTime {
 		$format_new = '';
 
 		for ( $i = 0; $i < $format_length; $i++ ) {
-			$char = $format[ $i ];
-
-			switch ( $char ) {
+			switch ( $format[ $i ] ) {
 				case 'P':
 				case 'I':
 				case 'O':
 				case 'T':
 				case 'Z':
 				case 'e':
-					$format_new .= backslashit( $this->format( $char ) );
+					$format_new .= backslashit( $this->format( $format[ $i ] ) );
 
 					break;
 				case '\\':
+					$format_new .= $format[ $i ];
+
 					if ( $i < $format_length ) {
 						$i++;
 					}
+
 					// no break
 				default:
-					$format_new .= $char;
+					$format_new .= $format[ $i ];
 
 					break;
 			}
