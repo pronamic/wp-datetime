@@ -160,8 +160,7 @@ class DateTime extends \DateTime {
 			$format = apply_filters( 'pronamic_datetime_default_format', $format );
 		}
 
-		$date = clone $this;
-		$date->setTimezone( DateTimeZone::get_default() );
+		$date = new self( '@' . $this->getTimestamp(), DateTimeZone::get_default() );
 
 		$format = $date->format_i18n_translate( $format );
 		$format = $date->format_i18n_timezone( $format );
