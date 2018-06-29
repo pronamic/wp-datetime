@@ -161,7 +161,7 @@ class DateTime extends \DateTime {
 
 		/**
 		 * PHP BUG: DateTime::setTimezone(): Can only do this for zones with ID for now.
-		 * PHP version < 5.426
+		 * PHP version < 5.4.26
 		 * PHP version > 5.5 < 5.5.10
 		 *
 		 * @link https://bugs.php.net/bug.php?id=45543
