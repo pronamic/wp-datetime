@@ -15,8 +15,8 @@ namespace Pronamic\WordPress\DateTime;
 /**
  * Date time zone
  *
- * @author Remco Tolsma
- * @version 1.0.0
+ * @author  Remco Tolsma
+ * @version 1.0.1
  * @since   1.0.0
  */
 class DateTimeZone extends \DateTimeZone {
@@ -35,11 +35,37 @@ class DateTimeZone extends \DateTimeZone {
 			return new DateTimeZone( $timezone_string );
 		}
 
-		$offset  = get_option( 'gmt_offset' );
-		$hours   = (int) $offset;
-		$minutes = abs( ( $offset - (int) $offset ) * 60 );
-		$offset  = sprintf( '%+03d:%02d', $hours, $minutes );
+		$gmt_offset = get_option( 'gmt_offset' );
+		$hours      = (int) $gmt_offset;
+		$minutes    = abs( ( $gmt_offset - (int) $gmt_offset ) * 60 );
+		$offset     = sprintf( '%+03d:%02d', $hours, $minutes );
+
+		/**
+		 * Offset values as timezone parameter are supported since PHP 5.5.10.
+		 *
+		 * @link http://php.net/manual/en/datetimezone.construct.php
+		 */
+		if ( version_compare( PHP_VERSION, '5.5.10', '<' ) ) {
+			$date = new DateTime( $offset );
+
+			return $date->getTimezone();
+		}
 
 		return new DateTimeZone( $offset );
+	}
+
+	/**
+	 * Get offset.
+	 */
+	public static function get_offset( $date ) {
+		$timezone_string = get_option( 'timezone_string' );
+
+		if ( empty( $timezone_string ) ) {
+			return floatval( get_option( 'gmt_offset', 0 ) ) * HOUR_IN_SECONDS;
+		}
+
+		$timezone = new DateTimeZone( $timezone_string );
+
+		return $timezone->getOffset( $date );
 	}
 }
