@@ -40,7 +40,7 @@ module.exports = function( grunt ) {
 		// Check textdomain errors
 		checktextdomain: {
 			options:{
-				text_domain: 'pronamic-money',
+				text_domain: 'pronamic-datetime',
 				keywords: [
 					'__:1,2d',
 					'_e:1,2d',
