@@ -15,8 +15,9 @@ use WP_UnitTestCase;
 /**
  * DateTimeZone Test
  *
- * @author Remco Tolsma
- * @version 1.0
+ * @author  Remco Tolsma
+ * @version 1.0.1
+ * @since   1.0.0
  */
 class DateTimeZoneTest extends WP_UnitTestCase {
 	/**

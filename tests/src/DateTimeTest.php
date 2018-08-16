@@ -15,8 +15,9 @@ use WP_UnitTestCase;
 /**
  * DateTime Test
  *
- * @author Remco Tolsma
- * @version 1.0
+ * @author  Remco Tolsma
+ * @version 1.0.1
+ * @since   1.0.0
  */
 class DateTimeTest extends WP_UnitTestCase {
 	/**
@@ -34,10 +35,7 @@ class DateTimeTest extends WP_UnitTestCase {
 	 * @dataProvider provider_test_format_i18n
 	 */
 	public function test_format_i18n( $locale, $wp_timezone, $wp_gmt_offset, $expected_i18n, $date_string, $date_timezone ) {
-		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
-		if ( $locale !== get_locale() ) {
-			switch_to_locale( $locale );
-		}
+		switch_to_locale( $locale );
 
 		update_option( 'timezone_string', $wp_timezone );
 		update_option( 'gmt_offset', $wp_gmt_offset );
@@ -53,7 +51,6 @@ class DateTimeTest extends WP_UnitTestCase {
 	 * @return array
 	 */
 	public function provider_test_format_i18n() {
-		// Note: Switching from nl_NL to fr_FR back to nl_NL is not working correctly (bug?).
 		return array(
 			// Dutch
 			array( 'nl_NL', 'UTC',              null,  '2015-05-05 mei 13:00:00 +00:00 UTC UTC',               '2015-05-05 15:00:00', 'Europe/Amsterdam' ),

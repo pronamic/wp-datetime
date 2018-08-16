@@ -16,7 +16,7 @@ namespace Pronamic\WordPress\DateTime;
  * Date time
  *
  * @author  Remco Tolsma
- * @version 1.0.0
+ * @version 1.0.1
  * @since   1.0.0
  */
 class DateTime extends \DateTime {
@@ -32,6 +32,8 @@ class DateTime extends \DateTime {
 
 	/**
 	 * Translate.
+	 *
+	 * @since 1.0.1
 	 *
 	 * @link https://github.com/WordPress/WordPress/blob/4.9.6/wp-includes/functions.php#L103-L119
 	 * @link https://github.com/WordPress/WordPress/blob/4.9.6/wp-includes/class-wp-locale.php#L116-L235
@@ -101,6 +103,8 @@ class DateTime extends \DateTime {
 	/**
 	 * Format I18N timezone.
 	 *
+	 * @since 1.0.1
+	 *
 	 * @link https://github.com/WordPress/WordPress/blob/4.9.6/wp-includes/functions.php#L120-L136
 	 * @link https://github.com/php/php-src/blob/php-7.2.7/ext/date/php_date.c#L1093-L1253
 	 *
@@ -145,6 +149,8 @@ class DateTime extends \DateTime {
 	/**
 	 * Get WordPress timestamp.
 	 *
+	 * @since 1.0.1
+	 *
 	 * @return int
 	 */
 	private function get_wp_timestamp() {
@@ -153,6 +159,8 @@ class DateTime extends \DateTime {
 
 	/**
 	 * Get local date for this date.
+	 *
+	 * @since 1.0.1
 	 *
 	 * @return DateTime
 	 */
@@ -200,13 +208,15 @@ class DateTime extends \DateTime {
 		$format = $date->format_i18n_translate( $format );
 		$format = $date->format_i18n_timezone( $format );
 
-		$result = date_i18n( $format, $this->get_wp_timestamp() );
+		$result = date_i18n( $format, $date->get_wp_timestamp() );
 
 		return $result;
 	}
 
 	/**
-	 * Parse a string into a new DateTime object according to the specified format
+	 * Parse a string into a new DateTime object according to the specified format.
+	 *
+	 * @since 1.0.1
 	 *
 	 * @param string        $format   Format accepted by date().
 	 * @param string        $time     String representing the time.
