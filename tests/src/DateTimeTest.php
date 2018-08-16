@@ -53,10 +53,10 @@ class DateTimeTest extends WP_UnitTestCase {
 	public function provider_test_format_i18n() {
 		return array(
 			// Dutch
-			array( 'nl_NL', 'UTC',              null,  '2015-05-05 mei 13:00:00 +00:00 UTC UTC',               '2015-05-05 15:00:00', 'Europe/Amsterdam' ),
-			array( 'nl_NL', 'Europe/Amsterdam', null,  '2015-05-05 mei 15:00:00 +02:00 CEST Europe/Amsterdam', '2015-05-05 13:00:00', 'UTC'              ),
-			array( 'nl_NL', null,               2,     '2015-05-05 mei 15:00:00 +02:00 GMT+0200 +02:00',       '2015-05-05 13:00:00', 'UTC'              ),
-			array( 'nl_NL', null,               12.75, '2015-05-06 mei 01:45:00 +12:45 GMT+1245 +12:45',       '2015-05-05 13:00:00', 'UTC'              ),
+			array( 'nl_NL', 'UTC',              null,  '2015-05-05 mei 13:00:00 +00:00 UTC UTC',                 '2015-05-05 15:00:00', 'Europe/Amsterdam' ),
+			array( 'nl_NL', 'Europe/Amsterdam', null,  '2015-05-05 mei 15:00:00 +02:00 CEST Europe/Amsterdam',   '2015-05-05 13:00:00', 'UTC'              ),
+			array( 'nl_NL', null,               2,     '2015-05-05 mei 15:00:00 +02:00 GMT+0200 +02:00',         '2015-05-05 13:00:00', 'UTC'              ),
+			array( 'nl_NL', null,               12.75, '2015-05-06 mei 01:45:00 +12:45 GMT+1245 +12:45',         '2015-05-05 13:00:00', 'UTC'              ),
 			array( 'nl_NL', 'UTC',              null,  '2016-03-11 maart 10:00:00 +00:00 UTC UTC',               '2016-03-11 11:00:00', 'Europe/Amsterdam' ),
 			array( 'nl_NL', 'UTC',              null,  '2016-04-11 april 09:00:00 +00:00 UTC UTC',               '2016-04-11 11:00:00', 'Europe/Amsterdam' ),
 			array( 'nl_NL', 'Europe/Amsterdam', null,  '2016-03-11 maart 11:00:00 +01:00 CET Europe/Amsterdam',  '2016-03-11 10:00:00', 'UTC' ),
@@ -64,9 +64,9 @@ class DateTimeTest extends WP_UnitTestCase {
 			array( 'nl_NL', null,               2,     '2016-03-11 maart 12:00:00 +02:00 GMT+0200 +02:00',       '2016-03-11 10:00:00', 'UTC' ),
 			array( 'nl_NL', null,               2,     '2016-04-11 april 11:00:00 +02:00 GMT+0200 +02:00',       '2016-04-11 09:00:00', 'UTC' ),
 			// English
-			array( 'en_US', 'UTC',              null,  '2015-05-05 May 13:00:00 +00:00 UTC UTC',               '2015-05-05 15:00:00', 'Europe/Amsterdam' ),
+			array( 'en_US', 'UTC',              null,  '2015-05-05 May 13:00:00 +00:00 UTC UTC',                 '2015-05-05 15:00:00', 'Europe/Amsterdam' ),
 			// French
-			array( 'fr_FR', 'UTC',              null,  '2015-05-05 mai 13:00:00 +00:00 UTC UTC',               '2015-05-05 15:00:00', 'Europe/Amsterdam' ),
+			array( 'fr_FR', 'UTC',              null,  '2015-05-05 mai 13:00:00 +00:00 UTC UTC',                 '2015-05-05 15:00:00', 'Europe/Amsterdam' ),
 		);
 	}
 }
