@@ -239,7 +239,7 @@ class DateTime extends \DateTime {
 
 		$wp_date_time = new self( '@' . $date->getTimestamp() );
 
-		$wp_date_time->setTimezone( $wp_date_time->getTimezone() );
+		$wp_date_time->setTimezone( $date->getTimezone() );
 
 		return $wp_date_time;
 	}
