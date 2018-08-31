@@ -227,12 +227,20 @@ class DateTime extends \DateTime {
 	 * @link http://php.net/manual/en/datetime.createfromformat.php
 	 */
 	public static function create_from_format( $format, $time, \DateTimeZone $timezone = null ) {
-		if ( is_a( $timezone, '\DateTimeZone' ) ) {
-			$date = parent::createFromFormat( $format, $time, $timezone );
-		} else {
+		if ( empty( $timezone ) ) {
 			$date = parent::createFromFormat( $format, $time );
+		} else {
+			$date = parent::createFromFormat( $format, $time, $timezone );
 		}
 
-		return new self( '@' . $date->format( 'U' ) );
+		if ( false === $date ) {
+			return false;
+		}
+
+		$wp_date_time = new self( '@' . $date->getTimestamp() );
+
+		$wp_date_time->setTimezone( $wp_date_time->getTimezone() );
+
+		return $wp_date_time;
 	}
 }
