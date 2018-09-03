@@ -222,24 +222,21 @@ class DateTime extends \DateTime {
 	 * @param string        $time     String representing the time.
 	 * @param \DateTimeZone $timezone A DateTimeZone object representing the desired time zone.
 	 *
-	 * @return DateTime|boolean
+	 * @return DateTime|false
 	 *
 	 * @link http://php.net/manual/en/datetime.createfromformat.php
+	 * @link https://github.com/Rarst/wpdatetime/blob/0.3/src/WpDateTimeTrait.php#L56-L77
 	 */
 	public static function create_from_format( $format, $time, \DateTimeZone $timezone = null ) {
-		if ( empty( $timezone ) ) {
-			$date = parent::createFromFormat( $format, $time );
-		} else {
-			$date = parent::createFromFormat( $format, $time, $timezone );
-		}
+		$created = parent::createFromFormat( $format, $time, $timezone );
 
-		if ( false === $date ) {
+		if ( false === $created ) {
 			return false;
 		}
 
-		$wp_date_time = new self( '@' . $date->getTimestamp() );
+		$wp_date_time = new self( '@' . $created->getTimestamp() );
 
-		$wp_date_time->setTimezone( $date->getTimezone() );
+		$wp_date_time->setTimezone( $created->getTimezone() );
 
 		return $wp_date_time;
 	}
