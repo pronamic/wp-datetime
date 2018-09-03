@@ -228,7 +228,13 @@ class DateTime extends \DateTime {
 	 * @link https://github.com/Rarst/wpdatetime/blob/0.3/src/WpDateTimeTrait.php#L56-L77
 	 */
 	public static function create_from_format( $format, $time, \DateTimeZone $timezone = null ) {
-		$created = parent::createFromFormat( $format, $time, $timezone );
+		/*
+		 * In PHP 5.6 or lower it's not possible to pass in an empty (null) timezone object.
+		 * This will result in a `DateTime::createFromFormat() expects parameter 3 to be DateTimeZone, null given` error.
+		 */
+		$created = empty( $timezone ) ?
+			parent::createFromFormat( $format, $time ) :
+			parent::createFromFormat( $format, $time, $timezone );
 
 		if ( false === $created ) {
 			return false;
