@@ -16,7 +16,7 @@ namespace Pronamic\WordPress\DateTime;
  * Date time
  *
  * @author  Remco Tolsma
- * @version 1.0.1
+ * @version 1.0.2
  * @since   1.0.0
  */
 class DateTime extends \DateTime {

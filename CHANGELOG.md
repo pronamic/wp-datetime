@@ -7,6 +7,9 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [1.0.2] - 2018-09-12
+- Fixed issue on PHP 5.6 or lower.
+
 ## [1.0.1] - 2018-08-16
 - Override `createFromFormat` method to return WordPress DateTime object.
 - Use new `create_from_format` method instead of override, due to method signature Travis errors for different PHP versions.
@@ -15,5 +18,6 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0
 - First release.
 
-[unreleased]: https://github.com/pronamic/wp-datetime/compare/1.1.0...HEAD
-[1.1.0]: https://github.com/pronamic/wp-datetime/compare/1.0.0...1.1.0
+[unreleased]: https://github.com/pronamic/wp-datetime/compare/1.0.2...HEAD
+[1.0.2]: https://github.com/pronamic/wp-datetime/compare/1.0.1...1.0.2
+[1.0.1]: https://github.com/pronamic/wp-datetime/compare/1.0.0...1.0.1

@@ -16,7 +16,7 @@ use WP_UnitTestCase;
  * DateTime Test
  *
  * @author  Remco Tolsma
- * @version 1.0.1
+ * @version 1.0.2
  * @since   1.0.0
  */
 class DateTimeTest extends WP_UnitTestCase {
