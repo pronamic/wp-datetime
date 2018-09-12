@@ -16,7 +16,7 @@ use WP_UnitTestCase;
  * DateTime Test
  *
  * @author  Remco Tolsma
- * @version 1.0.1
+ * @version 1.0.2
  * @since   1.0.0
  */
 class DateTimeTest extends WP_UnitTestCase {
@@ -67,6 +67,30 @@ class DateTimeTest extends WP_UnitTestCase {
 			array( 'en_US', 'UTC',              null,  '2015-05-05 May 13:00:00 +00:00 UTC UTC',                 '2015-05-05 15:00:00', 'Europe/Amsterdam' ),
 			// French
 			array( 'fr_FR', 'UTC',              null,  '2015-05-05 mai 13:00:00 +00:00 UTC UTC',                 '2015-05-05 15:00:00', 'Europe/Amsterdam' ),
+		);
+	}
+
+	/**
+	 * Test create from format.
+	 *
+	 * @dataProvider provider_create_from_format
+	 */
+	public function test_create_from_format( $format, $time, $timezone, $exptected ) {
+		$date = DateTime::create_from_format( $format, $time, $timezone );
+
+		$this->assertEquals( $exptected, $date->format( DATE_W3C ) );
+	}
+
+	/**
+	 * Provider create from format.
+	 *
+	 * @return array
+	 */
+	public function provider_create_from_format() {
+		return array(
+			array( 'j-M-Y H:i:s', '15-Feb-2009 10:00:00', null,                                   '2009-02-15T10:00:00+00:00' ),
+			array( 'j-M-Y H:i:s', '15-Feb-2009 10:00:00', new DateTimeZone( 'Europe/Amsterdam' ), '2009-02-15T10:00:00+01:00' ),
+			array( 'j-M-Y H:i:s', '15-Feb-2009 10:00:00', new DateTimeZone( 'America/Regina' ),   '2009-02-15T10:00:00-06:00' ),
 		);
 	}
 }

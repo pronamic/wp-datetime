@@ -16,7 +16,7 @@ namespace Pronamic\WordPress\DateTime;
  * Date time
  *
  * @author  Remco Tolsma
- * @version 1.0.1
+ * @version 1.0.2
  * @since   1.0.0
  */
 class DateTime extends \DateTime {
@@ -222,13 +222,28 @@ class DateTime extends \DateTime {
 	 * @param string        $time     String representing the time.
 	 * @param \DateTimeZone $timezone A DateTimeZone object representing the desired time zone.
 	 *
-	 * @return DateTime|boolean
+	 * @return DateTime|false
 	 *
 	 * @link http://php.net/manual/en/datetime.createfromformat.php
+	 * @link https://github.com/Rarst/wpdatetime/blob/0.3/src/WpDateTimeTrait.php#L56-L77
 	 */
 	public static function create_from_format( $format, $time, \DateTimeZone $timezone = null ) {
-		$date = parent::createFromFormat( $format, $time, $timezone );
+		/*
+		 * In PHP 5.6 or lower it's not possible to pass in an empty (null) timezone object.
+		 * This will result in a `DateTime::createFromFormat() expects parameter 3 to be DateTimeZone, null given` error.
+		 */
+		$created = empty( $timezone ) ?
+			parent::createFromFormat( $format, $time ) :
+			parent::createFromFormat( $format, $time, $timezone );
 
-		return new self( '@' . $date->format( 'U' ) );
+		if ( false === $created ) {
+			return false;
+		}
+
+		$wp_date_time = new self( '@' . $created->getTimestamp() );
+
+		$wp_date_time->setTimezone( $created->getTimezone() );
+
+		return $wp_date_time;
 	}
 }
