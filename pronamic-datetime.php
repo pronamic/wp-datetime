@@ -23,6 +23,9 @@
  * @package   Pronamic\WordPress\Pay
  */
 
+/**
+ * Pronamic DateTime load plugin textdomain.
+ */
 function pronamic_datetime_load_plugin_textdomain() {
 	load_plugin_textdomain( 'pronamic-datetime', false, basename( dirname( __FILE__ ) ) . '/languages' );
 }

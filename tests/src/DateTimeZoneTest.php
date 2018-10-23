@@ -23,7 +23,7 @@ class DateTimeZoneTest extends WP_UnitTestCase {
 	/**
 	 * Test constructor.
 	 *
-	 * @see https://github.com/WordPress/WordPress/blob/4.9.5/wp-includes/l10n.php
+	 * @link https://github.com/WordPress/WordPress/blob/4.9.5/wp-includes/l10n.php
 	 */
 	public function test_constructor() {
 		$timezone = new DateTimeZone( 'UTC' );
