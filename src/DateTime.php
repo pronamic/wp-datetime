@@ -186,6 +186,22 @@ class DateTime extends \DateTime {
 	}
 
 	/**
+	 * Format translate.
+	 *
+	 * @link https://developer.wordpress.org/reference/functions/__/
+	 *
+	 * @param string|null $format Format.
+	 *
+	 * @return string
+	 */
+	public function format_translate( $format = null ) {
+		$format = $this->format_i18n_translate( $format );
+		$format = $this->format_i18n_timezone( $format );
+
+		return $this->format( $format );
+	}
+
+	/**
 	 * Format I18N.
 	 *
 	 * @link https://github.com/Rarst/wpdatetime/blob/0.3/src/WpDateTimeTrait.php#L79-L104
