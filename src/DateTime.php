@@ -21,7 +21,7 @@ namespace Pronamic\WordPress\DateTime;
  */
 class DateTime extends \DateTime {
 	/**
-	 * MySQL datetime foramt.
+	 * MySQL datetime format.
 	 *
 	 * @link https://dev.mysql.com/doc/en/datetime.html
 	 * @link https://github.com/Rarst/wpdatetime/blob/0.3/src/WpDateTime.php#L10
