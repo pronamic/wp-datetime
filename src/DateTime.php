@@ -3,7 +3,7 @@
  * Date time
  *
  * @author    Pronamic <info@pronamic.eu>
- * @copyright 2005-2018 Pronamic
+ * @copyright 2005-2019 Pronamic
  * @license   GPL-3.0-or-later
  * @package   Pronamic\WordPress\DateTime
  * @see       https://github.com/woocommerce/woocommerce/blob/3.3.4/includes/class-wc-datetime.php
@@ -21,10 +21,10 @@ namespace Pronamic\WordPress\DateTime;
  */
 class DateTime extends \DateTime {
 	/**
-	 * MySQL datetime foramt.
+	 * MySQL datetime format.
 	 *
-	 * @see https://dev.mysql.com/doc/en/datetime.html
-	 * @see https://github.com/Rarst/wpdatetime/blob/0.3/src/WpDateTime.php#L10
+	 * @link https://dev.mysql.com/doc/en/datetime.html
+	 * @link https://github.com/Rarst/wpdatetime/blob/0.3/src/WpDateTime.php#L10
 	 *
 	 * @var string
 	 */
@@ -38,7 +38,7 @@ class DateTime extends \DateTime {
 	 * @link https://github.com/WordPress/WordPress/blob/4.9.6/wp-includes/functions.php#L103-L119
 	 * @link https://github.com/WordPress/WordPress/blob/4.9.6/wp-includes/class-wp-locale.php#L116-L235
 	 *
-	 * @param string $foramt Format.
+	 * @param string $format Format.
 	 *
 	 * @return string
 	 */
@@ -89,7 +89,7 @@ class DateTime extends \DateTime {
 						$i++;
 					}
 
-					// no break
+					// No break.
 				default:
 					$format_new .= $format[ $i ];
 
@@ -135,7 +135,7 @@ class DateTime extends \DateTime {
 						$i++;
 					}
 
-					// no break
+					// No break.
 				default:
 					$format_new .= $format[ $i ];
 
@@ -186,11 +186,27 @@ class DateTime extends \DateTime {
 	}
 
 	/**
+	 * Format translate.
+	 *
+	 * @link https://developer.wordpress.org/reference/functions/__/
+	 *
+	 * @since 1.1.0
+	 * @param string|null $format Format.
+	 * @return string
+	 */
+	public function format_translate( $format = null ) {
+		$format = $this->format_i18n_translate( $format );
+		$format = $this->format_i18n_timezone( $format );
+
+		return $this->format( $format );
+	}
+
+	/**
 	 * Format I18N.
 	 *
-	 * @see https://github.com/Rarst/wpdatetime/blob/0.3/src/WpDateTimeTrait.php#L79-L104
-	 * @see https://github.com/WordPress/WordPress/blob/4.9.4/wp-includes/functions.php#L72-L151
-	 * @see https://developer.wordpress.org/reference/functions/apply_filters/
+	 * @link https://github.com/Rarst/wpdatetime/blob/0.3/src/WpDateTimeTrait.php#L79-L104
+	 * @link https://github.com/WordPress/WordPress/blob/4.9.4/wp-includes/functions.php#L72-L151
+	 * @link https://developer.wordpress.org/reference/functions/apply_filters/
 	 *
 	 * @param string|null $format Format.
 	 *

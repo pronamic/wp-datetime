@@ -18,11 +18,14 @@
  * GitHub URI: https://github.com/pronamic/wp-datetime
  *
  * @author    Pronamic <info@pronamic.eu>
- * @copyright 2005-2018 Pronamic
+ * @copyright 2005-2019 Pronamic
  * @license   GPL-3.0-or-later
  * @package   Pronamic\WordPress\Pay
  */
 
+/**
+ * Pronamic DateTime load plugin textdomain.
+ */
 function pronamic_datetime_load_plugin_textdomain() {
 	load_plugin_textdomain( 'pronamic-datetime', false, basename( dirname( __FILE__ ) ) . '/languages' );
 }

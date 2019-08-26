@@ -3,7 +3,7 @@
  * DateTime
  *
  * @author    Pronamic <info@pronamic.eu>
- * @copyright 2005-2018 Pronamic
+ * @copyright 2005-2019 Pronamic
  * @license   GPL-3.0-or-later
  * @package   Pronamic\WordPress\DateTime
  */
@@ -23,7 +23,7 @@ class DateTimeZoneTest extends WP_UnitTestCase {
 	/**
 	 * Test constructor.
 	 *
-	 * @see https://github.com/WordPress/WordPress/blob/4.9.5/wp-includes/l10n.php
+	 * @link https://github.com/WordPress/WordPress/blob/4.9.5/wp-includes/l10n.php
 	 */
 	public function test_constructor() {
 		$timezone = new DateTimeZone( 'UTC' );
@@ -32,6 +32,8 @@ class DateTimeZoneTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test get default timezone.
+	 *
 	 * @dataProvider provider_test_get_default
 	 */
 	public function test_get_default( $wp_timezone, $wp_gmt_offset, $expected ) {
@@ -50,10 +52,10 @@ class DateTimeZoneTest extends WP_UnitTestCase {
 	 */
 	public function provider_test_get_default() {
 		return array(
-			array( 'UTC',              null,  'UTC' ),
-			array( 'Europe/Amsterdam', null,  'Europe/Amsterdam' ),
-			array( null,               2,     '+02:00' ),
-			array( null,               12.75, '+12:45' ),
+			array( 'UTC', null, 'UTC' ),
+			array( 'Europe/Amsterdam', null, 'Europe/Amsterdam' ),
+			array( null, 2, '+02:00' ),
+			array( null, 12.75, '+12:45' ),
 		);
 	}
 }

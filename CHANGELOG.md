@@ -7,6 +7,9 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [1.1.0] - 2019-08-26
+- Introduced a format translate function, will not switch to local timezone.
+
 ## [1.0.2] - 2018-09-12
 - Fixed issue on PHP 5.6 or lower.
 
@@ -18,6 +21,7 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0
 - First release.
 
-[unreleased]: https://github.com/pronamic/wp-datetime/compare/1.0.2...HEAD
+[unreleased]: https://github.com/pronamic/wp-datetime/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/pronamic/wp-datetime/compare/1.0.2...1.1.0
 [1.0.2]: https://github.com/pronamic/wp-datetime/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/pronamic/wp-datetime/compare/1.0.0...1.0.1

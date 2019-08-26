@@ -3,7 +3,7 @@
  * Date time zone
  *
  * @author    Pronamic <info@pronamic.eu>
- * @copyright 2005-2018 Pronamic
+ * @copyright 2005-2019 Pronamic
  * @license   GPL-3.0-or-later
  * @package   Pronamic\WordPress\DateTime
  * @see       https://github.com/woocommerce/woocommerce/blob/3.3.4/includes/class-wc-datetime.php
@@ -23,8 +23,8 @@ class DateTimeZone extends \DateTimeZone {
 	/**
 	 * Get default timezone.
 	 *
-	 * @see https://github.com/Rarst/wpdatetime/blob/0.3/src/WpDateTimeZone.php
-	 * @see https://github.com/WordPress/WordPress/blob/4.9.4/wp-includes/functions.php#L72-L151
+	 * @link https://github.com/Rarst/wpdatetime/blob/0.3/src/WpDateTimeZone.php
+	 * @link https://github.com/WordPress/WordPress/blob/4.9.4/wp-includes/functions.php#L72-L151
 	 *
 	 * @return DateTimeZone
 	 */
@@ -56,6 +56,10 @@ class DateTimeZone extends \DateTimeZone {
 
 	/**
 	 * Get offset.
+	 *
+	 * @param \DateTime $date DateTime object.
+	 *
+	 * @return float|int
 	 */
 	public static function get_offset( $date ) {
 		$timezone_string = get_option( 'timezone_string' );
