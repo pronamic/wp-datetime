@@ -190,8 +190,8 @@ class DateTime extends \DateTime {
 	 *
 	 * @link https://developer.wordpress.org/reference/functions/__/
 	 *
+	 * @since 1.1.0
 	 * @param string|null $format Format.
-	 *
 	 * @return string
 	 */
 	public function format_translate( $format = null ) {
