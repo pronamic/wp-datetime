@@ -256,7 +256,11 @@ class DateTime extends \DateTime {
 			return false;
 		}
 
-		$wp_date_time = new self( '@' . $created->getTimestamp() );
+		try {
+			$wp_date_time = new self( '@' . $created->getTimestamp() );
+		} catch ( \Exception $e ) {
+			return false;
+		}
 
 		$wp_date_time->setTimezone( $created->getTimezone() );
 
