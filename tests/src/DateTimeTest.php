@@ -95,4 +95,19 @@ class DateTimeTest extends WP_UnitTestCase {
 			array( 'j-M-Y H:i:s', '15-Feb-2009 10:00:00', new DateTimeZone( 'America/Regina' ), '2009-02-15T10:00:00-06:00' ),
 		);
 	}
+
+	/**
+	 * Test format 'F' in 'ja' locale.
+	 *
+	 * @link https://core.trac.wordpress.org/ticket/48319
+	 */
+	public function test_format_month_locale_ja() {
+		switch_to_locale( 'ja' );
+
+		$this->assertEquals( '10月', date_i18n( 'F' ) );
+
+		$date = new DateTime( '2019-10-16 00:00:00' );
+
+		$this->assertEquals( '10月', $date->format_i18n( 'F' ) );
+	}
 }
