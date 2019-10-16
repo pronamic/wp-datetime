@@ -116,7 +116,7 @@ class DateTimeTest extends WP_UnitTestCase {
 	/**
 	 * Test format that starts with a number.
 	 *
-	 * @link 
+	 * @link https://github.com/WordPress/WordPress/blob/5.2/wp-includes/formatting.php#L2615-L2628
 	 */
 	public function test_format_with_number_at_start() {
 		\switch_to_locale( 'en_US' );
@@ -129,7 +129,9 @@ class DateTimeTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test format
+	 * Test format that starts with a number in 'ja' locale.
+	 *
+	 * @link https://github.com/WordPress/WordPress/blob/5.2/wp-includes/formatting.php#L2615-L2628
 	 */
 	public function test_format_with_number_at_start_2() {
 		\switch_to_locale( 'ja' );
@@ -139,5 +141,29 @@ class DateTimeTest extends WP_UnitTestCase {
 		$date = new DateTime( '2019-10-16 00:00:00' );
 
 		$this->assertEquals( '0 2019 10月', $date->format_i18n( '0 Y F' ) );	
+	}
+
+	/**
+	 * Test date format characters in translation.
+	 *
+	 * @link https://developer.wordpress.org/reference/hooks/gettext/
+	 */
+	public function test_date_format_characters_in_translation() {
+		global $wp_locale;
+
+		\switch_to_locale( 'en_US' );
+
+		$month_translation = 'dDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrU';
+
+		$wp_locale->month['10'] = $month_translation;
+		$wp_locale->month_abbrev[ $month_translation ] = $month_translation;
+
+		$string = '2019-10-16 00:00:00';
+
+		$this->assertEquals( 'dDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrU', \date_i18n( 'F', \strtotime( $string ) ) );
+
+		$date = new DateTime( $string );
+
+		$this->assertEquals( 'dDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrU', $date->format_i18n( 'F' ) );	
 	}
 }
