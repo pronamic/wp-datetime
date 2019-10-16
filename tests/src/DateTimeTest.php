@@ -192,4 +192,29 @@ class DateTimeTest extends WP_UnitTestCase {
 
 		$this->assertEquals( '123 ⒶⒷⒸdDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrUⓍⓎⓏ 2019', $date->format_i18n( '123 F Y' ) );	
 	}
+
+	/**
+	 * Test backslashes in translation.
+	 *
+	 * @link https://www.utf8-chartable.de/unicode-utf8-table.pl
+	 * @link https://github.com/WordPress/WordPress/blob/5.2/wp-includes/class-wp-locale.php
+	 */
+	public function test_backslashes_in_translation() {
+		global $wp_locale;
+
+		\switch_to_locale( 'en_US' );
+
+		$month_translation = 'ABCD \ 1234';
+
+		$wp_locale->month['10'] = $month_translation;
+		$wp_locale->month_abbrev[ $month_translation ] = $month_translation;
+
+		$string = '2019-10-16 00:00:00';
+
+		$this->assertEquals( '123 - ABCD \ 1234 - 2019', \date_i18n( '123 - F - Y', \strtotime( $string ) ) );
+
+		$date = new DateTime( $string );
+
+		$this->assertEquals( '123 - ABCD \ 1234 - 2019', $date->format_i18n( '123 - F - Y' ) );	
+	}
 }
