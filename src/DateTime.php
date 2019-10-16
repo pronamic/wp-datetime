@@ -97,6 +97,9 @@ class DateTime extends \DateTime {
 	private static function slash_date_format_characters( $value ) {
 		$charlist = implode( '', self::DATE_FORMAT_CHARACTERS );
 
+		// Backslash the backslash.
+		$charlist .= '\\';
+
 		$value = addcslashes( $value, $charlist );
 
 		return $value;

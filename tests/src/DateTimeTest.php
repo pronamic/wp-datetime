@@ -121,11 +121,10 @@ class DateTimeTest extends WP_UnitTestCase {
 	public function test_format_with_number_at_start() {
 		\switch_to_locale( 'en_US' );
 
-		$this->assertEquals( '0 2019 October', \date_i18n( '0 Y F', \strtotime( '2019-10-16 00:00:00' ) ) );
-
 		$date = new DateTime( '2019-10-16 00:00:00' );
 
 		$this->assertEquals( '0 2019 October', $date->format_i18n( '0 Y F' ) );
+		$this->assertEquals( '0 2019 October', \date_i18n( '0 Y F', \strtotime( '2019-10-16 00:00:00' ) ) );
 	}
 
 	/**
@@ -136,11 +135,10 @@ class DateTimeTest extends WP_UnitTestCase {
 	public function test_format_with_number_at_start_2() {
 		\switch_to_locale( 'ja' );
 
-		$this->assertEquals( '0 2019 10月', \date_i18n( '0 Y F', \strtotime( '2019-10-16 00:00:00' ) ) );
-
 		$date = new DateTime( '2019-10-16 00:00:00' );
 
 		$this->assertEquals( '0 2019 10月', $date->format_i18n( '0 Y F' ) );	
+		$this->assertEquals( '0 2019 10月', \date_i18n( '0 Y F', \strtotime( '2019-10-16 00:00:00' ) ) );
 	}
 
 	/**
@@ -161,11 +159,10 @@ class DateTimeTest extends WP_UnitTestCase {
 
 		$string = '2019-10-16 00:00:00';
 
-		$this->assertEquals( 'dDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrU', \date_i18n( 'F', \strtotime( $string ) ) );
-
 		$date = new DateTime( $string );
 
 		$this->assertEquals( 'dDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrU', $date->format_i18n( 'F' ) );	
+		$this->assertEquals( 'dDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrU', \date_i18n( 'F', \strtotime( $string ) ) );
 	}
 
 	/**
@@ -186,11 +183,10 @@ class DateTimeTest extends WP_UnitTestCase {
 
 		$string = '2019-10-16 00:00:00';
 
-		$this->assertEquals( '123 ⒶⒷⒸdDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrUⓍⓎⓏ 2019', \date_i18n( '123 F Y', \strtotime( $string ) ) );
-
 		$date = new DateTime( $string );
 
-		$this->assertEquals( '123 ⒶⒷⒸdDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrUⓍⓎⓏ 2019', $date->format_i18n( '123 F Y' ) );	
+		$this->assertEquals( '123 ⒶⒷⒸdDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrUⓍⓎⓏ 2019', $date->format_i18n( '123 F Y' ) );
+		$this->assertEquals( '123 ⒶⒷⒸdDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrUⓍⓎⓏ 2019', \date_i18n( '123 F Y', \strtotime( $string ) ) );
 	}
 
 	/**
@@ -211,10 +207,9 @@ class DateTimeTest extends WP_UnitTestCase {
 
 		$string = '2019-10-16 00:00:00';
 
-		$this->assertEquals( '123 - ABCD \ 1234 - 2019', \date_i18n( '123 - F - Y', \strtotime( $string ) ) );
-
 		$date = new DateTime( $string );
 
 		$this->assertEquals( '123 - ABCD \ 1234 - 2019', $date->format_i18n( '123 - F - Y' ) );	
+		$this->assertEquals( '123 - ABCD \ 1234 - 2019', \date_i18n( '123 - F - Y', \strtotime( $string ) ) );
 	}
 }
