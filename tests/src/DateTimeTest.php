@@ -102,12 +102,42 @@ class DateTimeTest extends WP_UnitTestCase {
 	 * @link https://core.trac.wordpress.org/ticket/48319
 	 */
 	public function test_format_month_locale_ja() {
-		switch_to_locale( 'ja' );
+		\switch_to_locale( 'ja' );
 
-		$this->assertEquals( '10月', date_i18n( 'F' ) );
+		$this->assertEquals( '10月', \date_i18n( 'F', \strtotime( '2019-10-16 00:00:00' ) ) );
+		$this->assertEquals( 'F', \date_i18n( '\F', \strtotime( '2019-10-16 00:00:00' ) ) );
 
 		$date = new DateTime( '2019-10-16 00:00:00' );
 
 		$this->assertEquals( '10月', $date->format_i18n( 'F' ) );
+		$this->assertEquals( 'F', $date->format_i18n( '\F' ) );
+	}
+
+	/**
+	 * Test format that starts with a number.
+	 *
+	 * @link 
+	 */
+	public function test_format_with_number_at_start() {
+		\switch_to_locale( 'en_US' );
+
+		$this->assertEquals( '0 2019 October', \date_i18n( '0 Y F', \strtotime( '2019-10-16 00:00:00' ) ) );
+
+		$date = new DateTime( '2019-10-16 00:00:00' );
+
+		$this->assertEquals( '0 2019 October', $date->format_i18n( '0 Y F' ) );
+	}
+
+	/**
+	 * Test format
+	 */
+	public function test_format_with_number_at_start_2() {
+		\switch_to_locale( 'ja' );
+
+		$this->assertEquals( '0 2019 10月', \date_i18n( '0 Y F', \strtotime( '2019-10-16 00:00:00' ) ) );
+
+		$date = new DateTime( '2019-10-16 00:00:00' );
+
+		$this->assertEquals( '0 2019 10月', $date->format_i18n( '0 Y F' ) );	
 	}
 }
