@@ -147,6 +147,7 @@ class DateTimeTest extends WP_UnitTestCase {
 	 * Test date format characters in translation.
 	 *
 	 * @link https://developer.wordpress.org/reference/hooks/gettext/
+	 * @link https://github.com/WordPress/WordPress/blob/5.2/wp-includes/class-wp-locale.php
 	 */
 	public function test_date_format_characters_in_translation() {
 		global $wp_locale;
@@ -165,5 +166,30 @@ class DateTimeTest extends WP_UnitTestCase {
 		$date = new DateTime( $string );
 
 		$this->assertEquals( 'dDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrU', $date->format_i18n( 'F' ) );	
+	}
+
+	/**
+	 * Test UTF-8 characters in translation.
+	 *
+	 * @link https://www.utf8-chartable.de/unicode-utf8-table.pl
+	 * @link https://github.com/WordPress/WordPress/blob/5.2/wp-includes/class-wp-locale.php
+	 */
+	public function test_utf8_characters_in_translation() {
+		global $wp_locale;
+
+		\switch_to_locale( 'en_US' );
+
+		$month_translation = 'ⒶⒷⒸdDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrUⓍⓎⓏ';
+
+		$wp_locale->month['10'] = $month_translation;
+		$wp_locale->month_abbrev[ $month_translation ] = $month_translation;
+
+		$string = '2019-10-16 00:00:00';
+
+		$this->assertEquals( '123 ⒶⒷⒸdDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrUⓍⓎⓏ 2019', \date_i18n( '123 F Y', \strtotime( $string ) ) );
+
+		$date = new DateTime( $string );
+
+		$this->assertEquals( '123 ⒶⒷⒸdDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrUⓍⓎⓏ 2019', $date->format_i18n( '123 F Y' ) );	
 	}
 }
