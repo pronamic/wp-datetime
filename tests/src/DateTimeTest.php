@@ -35,6 +35,15 @@ class DateTimeTest extends WP_UnitTestCase {
 	 * Test format i18n.
 	 *
 	 * @dataProvider provider_test_format_i18n
+	 *
+	 * @param string         $locale        Locale.
+	 * @param string|null    $wp_timezone   WordPress timezone.
+	 * @param null|int|float $wp_gmt_offset GMT offset.
+	 * @param string         $expected_i18n Expected i18n.
+	 * @param string         $date_string   Date string.
+	 * @param string         $date_timezone Timezone.
+	 *
+	 * @throws \Exception Throws exception on date error.
 	 */
 	public function test_format_i18n( $locale, $wp_timezone, $wp_gmt_offset, $expected_i18n, $date_string, $date_timezone ) {
 		switch_to_locale( $locale );
@@ -76,6 +85,11 @@ class DateTimeTest extends WP_UnitTestCase {
 	 * Test create from format.
 	 *
 	 * @dataProvider provider_create_from_format
+	 *
+	 * @param string       $format   Format.
+	 * @param DateTimeZone $time     Time.
+	 * @param string       $timezone Timezone.
+	 * @param string       $expected Expected value.
 	 */
 	public function test_create_from_format( $format, $time, $timezone, $expected ) {
 		$date = DateTime::create_from_format( $format, $time, $timezone );
@@ -137,7 +151,7 @@ class DateTimeTest extends WP_UnitTestCase {
 
 		$date = new DateTime( '2019-10-16 00:00:00' );
 
-		$this->assertEquals( '0 2019 10月', $date->format_i18n( '0 Y F' ) );	
+		$this->assertEquals( '0 2019 10月', $date->format_i18n( '0 Y F' ) );
 		$this->assertEquals( '0 2019 10月', \date_i18n( '0 Y F', \strtotime( '2019-10-16 00:00:00' ) ) );
 	}
 
@@ -154,14 +168,14 @@ class DateTimeTest extends WP_UnitTestCase {
 
 		$month_translation = 'dDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrU';
 
-		$wp_locale->month['10'] = $month_translation;
+		$wp_locale->month['10']                        = $month_translation;
 		$wp_locale->month_abbrev[ $month_translation ] = $month_translation;
 
 		$string = '2019-10-16 00:00:00';
 
 		$date = new DateTime( $string );
 
-		$this->assertEquals( 'dDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrU', $date->format_i18n( 'F' ) );	
+		$this->assertEquals( 'dDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrU', $date->format_i18n( 'F' ) );
 		$this->assertEquals( 'dDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrU', \date_i18n( 'F', \strtotime( $string ) ) );
 	}
 
@@ -178,7 +192,7 @@ class DateTimeTest extends WP_UnitTestCase {
 
 		$month_translation = 'ⒶⒷⒸdDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrUⓍⓎⓏ';
 
-		$wp_locale->month['10'] = $month_translation;
+		$wp_locale->month['10']                        = $month_translation;
 		$wp_locale->month_abbrev[ $month_translation ] = $month_translation;
 
 		$string = '2019-10-16 00:00:00';
@@ -202,14 +216,14 @@ class DateTimeTest extends WP_UnitTestCase {
 
 		$month_translation = 'ABCD \ 1234';
 
-		$wp_locale->month['10'] = $month_translation;
+		$wp_locale->month['10']                        = $month_translation;
 		$wp_locale->month_abbrev[ $month_translation ] = $month_translation;
 
 		$string = '2019-10-16 00:00:00';
 
 		$date = new DateTime( $string );
 
-		$this->assertEquals( '123 - ABCD \ 1234 - 2019', $date->format_i18n( '123 - F - Y' ) );	
+		$this->assertEquals( '123 - ABCD \ 1234 - 2019', $date->format_i18n( '123 - F - Y' ) );
 		$this->assertEquals( '123 - ABCD \ 1234 - 2019', \date_i18n( '123 - F - Y', \strtotime( $string ) ) );
 	}
 
@@ -226,14 +240,14 @@ class DateTimeTest extends WP_UnitTestCase {
 
 		$month_translation = 'ABCD 1234 \\';
 
-		$wp_locale->month['10'] = $month_translation;
+		$wp_locale->month['10']                        = $month_translation;
 		$wp_locale->month_abbrev[ $month_translation ] = $month_translation;
 
 		$string = '2019-10-16 00:00:00';
 
 		$date = new DateTime( $string );
 
-		$this->assertEquals( '123 - ABCD 1234 \ - 2019', $date->format_i18n( '123 - F - Y' ) );	
+		$this->assertEquals( '123 - ABCD 1234 \ - 2019', $date->format_i18n( '123 - F - Y' ) );
 		$this->assertEquals( '123 - ABCD 1234 \ - 2019', \date_i18n( '123 - F - Y', \strtotime( $string ) ) );
 	}
 }
