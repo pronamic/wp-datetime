@@ -223,8 +223,10 @@ class DateTimeTest extends WP_UnitTestCase {
 
 		$date = new DateTime( $string );
 
-		$this->assertEquals( '123 - ABCD \ 1234 - 2019', $date->format_i18n( '123 - F - Y' ) );
-		$this->assertEquals( '123 - ABCD \ 1234 - 2019', \date_i18n( '123 - F - Y', \strtotime( $string ) ) );
+		$expected = '123 - ABCD \ 1234 - 2019';
+
+		$this->assertEquals( $expected, $date->format_i18n( '123 - F - Y' ) );
+		$this->assertEquals( $expected, \date_i18n( '123 - F - Y', \strtotime( $string ) ) );
 	}
 
 	/**
