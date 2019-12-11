@@ -211,6 +211,7 @@ class DateTimeTest extends WP_UnitTestCase {
 	 */
 	public function test_backslashes_in_translation() {
 		global $wp_locale;
+		global $wp_version;
 
 		\switch_to_locale( 'en_US' );
 
@@ -226,6 +227,16 @@ class DateTimeTest extends WP_UnitTestCase {
 		$expected = '123 - ABCD \ 1234 - 2019';
 
 		$this->assertEquals( $expected, $date->format_i18n( '123 - F - Y' ) );
+
+		/**
+		 * In WordPress version before 5.3 there was a bug with backslashes in translations.
+		 *
+		 * @link https://core.trac.wordpress.org/ticket/48319#comment:5
+		 */
+		if ( version_compare( $wp_version, '5.3', '<' ) ) {
+			$expected = '123 - ABCD  1234 - 2019';
+		}
+
 		$this->assertEquals( $expected, \date_i18n( '123 - F - Y', \strtotime( $string ) ) );
 	}
 
@@ -237,6 +248,7 @@ class DateTimeTest extends WP_UnitTestCase {
 	 */
 	public function test_backslash_at_end_in_translation() {
 		global $wp_locale;
+		global $wp_version;
 
 		\switch_to_locale( 'en_US' );
 
@@ -249,7 +261,19 @@ class DateTimeTest extends WP_UnitTestCase {
 
 		$date = new DateTime( $string );
 
-		$this->assertEquals( '123 - ABCD 1234 \ - 2019', $date->format_i18n( '123 - F - Y' ) );
-		$this->assertEquals( '123 - ABCD 1234 \ - 2019', \date_i18n( '123 - F - Y', \strtotime( $string ) ) );
+		$expected = '123 - ABCD 1234 \ - 2019';
+
+		$this->assertEquals( $expected, $date->format_i18n( '123 - F - Y' ) );
+
+		/**
+		 * In WordPress version before 5.3 there was a bug with backslashes in translations.
+		 *
+		 * @link https://core.trac.wordpress.org/ticket/48319#comment:5
+		 */
+		if ( version_compare( $wp_version, '5.3', '<' ) ) {
+			$expected = '123 - ABCD 1234  - 2019';
+		}
+
+		$this->assertEquals( $expected, \date_i18n( '123 - F - Y', \strtotime( $string ) ) );
 	}
 }
