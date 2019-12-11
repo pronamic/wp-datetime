@@ -12,7 +12,9 @@ env:
 jobs:
   include:
     - php: 7.3
-      env: WP_VERSION=^5.2 COVERAGE=1 PHPCS=1
+      env: WP_VERSION=^5.3 COVERAGE=1 PHPCS=1
+    - php: 7.2
+      env: WP_VERSION=^5.2
     - php: 7.2
       env: WP_VERSION=^5.1
     - php: 7.2
