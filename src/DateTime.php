@@ -251,7 +251,7 @@ class DateTime extends \DateTime {
 		 * @link https://3v4l.org/mlZX7
 		 */
 		if ( version_compare( PHP_VERSION, '5.4.26', '<' ) || ( version_compare( PHP_VERSION, '5.5', '>' ) && version_compare( PHP_VERSION, '5.5.10', '<' ) ) ) {
-			return new DateTime( date( self::MYSQL, $this->get_wp_timestamp() ), $wp_timezone );
+			return new DateTime( \gmdate( self::MYSQL, $this->get_wp_timestamp() ), $wp_timezone );
 		}
 
 		$date = clone $this;
