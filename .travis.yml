@@ -14,13 +14,15 @@ jobs:
     # WordPress and PHP 7.4: https://make.wordpress.org/core/2019/10/11/wordpress-and-php-7-4/.
     - php: 7.4
       env: WP_VERSION=5.3.* COVERAGE=1 PHPCS=1
-    - php: 7.4
+    # WordPress 5.2 (or lower) will trigger PHP 7.4 (or higher) errors.
+    # @link https://make.wordpress.org/core/2019/10/11/wordpress-and-php-7-4/.
+    - php: 7.3
       env: WP_VERSION=5.2.*
-    - php: 7.4
+    - php: 7.3
       env: WP_VERSION=5.1.*
-    - php: 7.4
+    - php: 7.3
       env: WP_VERSION=5.0.*
-    - php: 7.4
+    - php: 7.3
       env: WP_VERSION=4.9.*
     # WordPress 4.8 (or lower) will trigger PHP 7.2 (or higher) errors.
     # @link https://make.wordpress.org/core/2018/10/15/wordpress-and-php-7-3/
