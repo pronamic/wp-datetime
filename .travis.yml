@@ -12,19 +12,19 @@ env:
 jobs:
   include:
     - php: 7.4
-      env: WP_VERSION=^5.3 COVERAGE=1 PHPCS=1
+      env: WP_VERSION=5.3.* COVERAGE=1 PHPCS=1
     - php: 7.4
-      env: WP_VERSION=^5.2
+      env: WP_VERSION=5.2.*
     - php: 7.4
-      env: WP_VERSION=^5.1
+      env: WP_VERSION=5.1.*
     - php: 7.4
-      env: WP_VERSION=^5.0
+      env: WP_VERSION=5.0.*
     - php: 7.4
-      env: WP_VERSION=^4.9
+      env: WP_VERSION=4.9.*
     - php: 7.4
-      env: WP_VERSION=^4.8
+      env: WP_VERSION=4.8.*
     - php: 7.4
-      env: WP_VERSION=^4.7
+      env: WP_VERSION=4.7.*
     - php: 7.4
       env: WP_MULTISITE=1
     - php: 7.4
