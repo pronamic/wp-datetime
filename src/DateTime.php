@@ -31,6 +31,81 @@ class DateTime extends \DateTime {
 	const MYSQL = 'Y-m-d H:i:s';
 
 	/**
+	 * Date format characters in PHP.
+	 *
+	 * @link https://www.php.net/manual/en/function.date.php
+	 * @link https://github.com/php/php-src/blob/php-7.3.10/ext/date/php_date.c#L1128-L1288
+	 * @var array
+	 */
+	const DATE_FORMAT_CHARACTERS = array(
+		// Day.
+		'd',
+		'D',
+		'j',
+		'l',
+		'S',
+		'w',
+		'N',
+		'z',
+		// Week.
+		'W',
+		'o',
+		// Month.
+		'F',
+		'm',
+		'M',
+		'n',
+		't',
+		// Year.
+		'L',
+		'y',
+		'Y',
+		// Time.
+		'a',
+		'A',
+		'B',
+		'g',
+		'G',
+		'h',
+		'H',
+		'i',
+		's',
+		'u',
+		'v',
+		// Timezone.
+		'I',
+		'P',
+		'O',
+		'T',
+		'e',
+		'Z',
+		// Full date/time.
+		'c',
+		'r',
+		'U',
+	);
+
+	/**
+	 * Slash date format characters.
+	 *
+	 * @link https://github.com/WordPress/WordPress/blob/5.2/wp-includes/formatting.php#L2615-L2628
+	 * @link https://www.php.net/manual/en/function.addcslashes.php
+	 *
+	 * @param string $value Value.
+	 * @return string
+	 */
+	private static function slash_date_format_characters( $value ) {
+		$charlist = implode( '', self::DATE_FORMAT_CHARACTERS );
+
+		// Backslash the backslash.
+		$charlist .= '\\';
+
+		$value = addcslashes( $value, $charlist );
+
+		return $value;
+	}
+
+	/**
 	 * Translate.
 	 *
 	 * @since 1.0.1
@@ -59,27 +134,27 @@ class DateTime extends \DateTime {
 		for ( $i = 0; $i < $format_length; $i++ ) {
 			switch ( $format[ $i ] ) {
 				case 'D':
-					$format_new .= backslashit( $wp_locale->get_weekday_abbrev( $weekday ) );
+					$format_new .= self::slash_date_format_characters( $wp_locale->get_weekday_abbrev( $weekday ) );
 
 					break;
 				case 'F':
-					$format_new .= backslashit( $month );
+					$format_new .= self::slash_date_format_characters( $month );
 
 					break;
 				case 'l':
-					$format_new .= backslashit( $weekday );
+					$format_new .= self::slash_date_format_characters( $weekday );
 
 					break;
 				case 'M':
-					$format_new .= backslashit( $wp_locale->get_month_abbrev( $month ) );
+					$format_new .= self::slash_date_format_characters( $wp_locale->get_month_abbrev( $month ) );
 
 					break;
 				case 'a':
-					$format_new .= backslashit( $wp_locale->get_meridiem( $this->format( 'a' ) ) );
+					$format_new .= self::slash_date_format_characters( $wp_locale->get_meridiem( $this->format( 'a' ) ) );
 
 					break;
 				case 'A':
-					$format_new .= backslashit( $wp_locale->get_meridiem( $this->format( 'A' ) ) );
+					$format_new .= self::slash_date_format_characters( $wp_locale->get_meridiem( $this->format( 'A' ) ) );
 
 					break;
 				case '\\':
@@ -125,7 +200,7 @@ class DateTime extends \DateTime {
 				case 'T':
 				case 'Z':
 				case 'e':
-					$format_new .= backslashit( $this->format( $format[ $i ] ) );
+					$format_new .= self::slash_date_format_characters( $this->format( $format[ $i ] ) );
 
 					break;
 				case '\\':
@@ -176,7 +251,7 @@ class DateTime extends \DateTime {
 		 * @link https://3v4l.org/mlZX7
 		 */
 		if ( version_compare( PHP_VERSION, '5.4.26', '<' ) || ( version_compare( PHP_VERSION, '5.5', '>' ) && version_compare( PHP_VERSION, '5.5.10', '<' ) ) ) {
-			return new DateTime( date( self::MYSQL, $this->get_wp_timestamp() ), $wp_timezone );
+			return new DateTime( \gmdate( self::MYSQL, $this->get_wp_timestamp() ), $wp_timezone );
 		}
 
 		$date = clone $this;
@@ -256,7 +331,11 @@ class DateTime extends \DateTime {
 			return false;
 		}
 
-		$wp_date_time = new self( '@' . $created->getTimestamp() );
+		try {
+			$wp_date_time = new self( '@' . $created->getTimestamp() );
+		} catch ( \Exception $e ) {
+			return false;
+		}
 
 		$wp_date_time->setTimezone( $created->getTimezone() );
 
