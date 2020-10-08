@@ -266,11 +266,7 @@ trait DateTimeTrait {
 			return false;
 		}
 
-		try {
-			$wp_date_time = new static( '@' . $created->getTimestamp() );
-		} catch ( \Exception $e ) {
-			return false;
-		}
+		$wp_date_time = new static( '@' . $created->getTimestamp() );
 
 		$wp_date_time->setTimezone( $created->getTimezone() );
 
