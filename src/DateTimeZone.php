@@ -16,7 +16,7 @@ namespace Pronamic\WordPress\DateTime;
  * Date time zone
  *
  * @author  Remco Tolsma
- * @version 1.0.1
+ * @version 1.2.0
  * @since   1.0.0
  */
 class DateTimeZone extends \DateTimeZone {

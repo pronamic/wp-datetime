@@ -1,6 +1,6 @@
 <?php
 /**
- * Date time
+ * Date time immutable
  *
  * @author    Pronamic <info@pronamic.eu>
  * @copyright 2005-2020 Pronamic
@@ -13,12 +13,12 @@
 namespace Pronamic\WordPress\DateTime;
 
 /**
- * Date time
+ * Date time immutable
  *
  * @author  Remco Tolsma
  * @version 1.2.0
- * @since   1.0.0
+ * @since   1.2.0
  */
-class DateTime extends \DateTime implements DateTimeInterface {
+class DateTimeImmutable extends \DateTimeImmutable implements DateTimeInterface {
 	use DateTimeTrait;
 }

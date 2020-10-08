@@ -7,6 +7,10 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [1.2.0] - unreleased
+- Added DateTimeImmutable class.
+- Updated copyright.
+
 ## [1.1.1] - 2019-12-17
 - Fix for WordPress core trac ticket 48319 (https://core.trac.wordpress.org/ticket/48319).
 - Updated PHP compatibility test version to PHP 5.6.
@@ -26,7 +30,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0
 - First release.
 
-[unreleased]: https://github.com/pronamic/wp-datetime/compare/1.1.1...HEAD
+[unreleased]: https://github.com/pronamic/wp-datetime/compare/1.2.0...HEAD
+[1.2.0]: https://github.com/pronamic/wp-datetime/compare/1.1.1...1.2.0
 [1.1.1]: https://github.com/pronamic/wp-datetime/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/pronamic/wp-datetime/compare/1.0.2...1.1.0
 [1.0.2]: https://github.com/pronamic/wp-datetime/compare/1.0.1...1.0.2
