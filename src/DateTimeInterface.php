@@ -97,4 +97,17 @@ interface DateTimeInterface extends \DateTimeInterface {
 	 * @return string
 	 */
 	public function format_i18n( $format = null );
+
+	/**
+	 * Create from format.
+	 *
+	 * @link https://www.php.net/manual/en/datetime.createfromformat.php
+	 * @link https://www.php.net/manual/en/datetimeimmutable.createfromformat.php
+	 *
+	 * @param string        $format   Format accepted by date().
+	 * @param string        $time     String representing the time.
+	 * @param \DateTimeZone $timezone A DateTimeZone object representing the desired time zone.
+	 * @return static
+	 */
+	public static function create_from_format( $format, $time, \DateTimeZone $timezone = null );
 }

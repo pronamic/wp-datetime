@@ -9,6 +9,11 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 
 ## [1.2.0] - unreleased
 - Added DateTimeImmutable class.
+- Added `DateTime::create_from_immutable( \DateTimeImmutable $object )` method.
+- Added `DateTimeImmutable::create_from_mutable( \DateTime $object )` method.
+- Override upstream `DateTime::createFromImmutable( $object )` method.
+- Override upstream `DateTimeImmutable::createFromMutable( $object )` method.
+- Override upstream `DateTimeInterface::createFromFormat( $format, $time, $timezone = null )` method.
 - Updated copyright.
 
 ## [1.1.1] - 2019-12-17
