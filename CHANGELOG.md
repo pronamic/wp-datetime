@@ -7,7 +7,7 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
-## [1.2.0] - unreleased
+## [1.2.0] - 2020-10-08
 - Added DateTimeImmutable class.
 - Added `DateTime::create_from_immutable( \DateTimeImmutable $object )` method.
 - Added `DateTimeImmutable::create_from_mutable( \DateTime $object )` method.
