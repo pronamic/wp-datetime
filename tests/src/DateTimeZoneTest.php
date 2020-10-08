@@ -10,8 +10,6 @@
 
 namespace Pronamic\WordPress\DateTime;
 
-use WP_UnitTestCase;
-
 /**
  * DateTimeZone Test
  *
@@ -19,7 +17,7 @@ use WP_UnitTestCase;
  * @version 1.0.1
  * @since   1.0.0
  */
-class DateTimeZoneTest extends WP_UnitTestCase {
+class DateTimeZoneTest extends \WP_UnitTestCase {
 	/**
 	 * Test constructor.
 	 *
@@ -37,8 +35,8 @@ class DateTimeZoneTest extends WP_UnitTestCase {
 	 * @dataProvider provider_test_get_default
 	 */
 	public function test_get_default( $wp_timezone, $wp_gmt_offset, $expected ) {
-		update_option( 'timezone_string', $wp_timezone );
-		update_option( 'gmt_offset', $wp_gmt_offset );
+		\update_option( 'timezone_string', $wp_timezone );
+		\update_option( 'gmt_offset', $wp_gmt_offset );
 
 		$timezone = DateTimeZone::get_default();
 

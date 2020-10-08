@@ -10,8 +10,6 @@
 
 namespace Pronamic\WordPress\DateTime;
 
-use WP_UnitTestCase;
-
 /**
  * DateTime Test
  *
@@ -19,7 +17,7 @@ use WP_UnitTestCase;
  * @version 1.0.2
  * @since   1.0.0
  */
-class DateTimeTest extends WP_UnitTestCase {
+class DateTimeTest extends \WP_UnitTestCase {
 	/**
 	 * Test constructor.
 	 *
@@ -46,10 +44,10 @@ class DateTimeTest extends WP_UnitTestCase {
 	 * @throws \Exception Throws exception on date error.
 	 */
 	public function test_format_i18n( $locale, $wp_timezone, $wp_gmt_offset, $expected_i18n, $date_string, $date_timezone ) {
-		switch_to_locale( $locale );
+		\switch_to_locale( $locale );
 
-		update_option( 'timezone_string', $wp_timezone );
-		update_option( 'gmt_offset', $wp_gmt_offset );
+		\update_option( 'timezone_string', $wp_timezone );
+		\update_option( 'gmt_offset', $wp_gmt_offset );
 
 		$date = new DateTime( $date_string, new DateTimeZone( $date_timezone ) );
 
@@ -233,7 +231,7 @@ class DateTimeTest extends WP_UnitTestCase {
 		 *
 		 * @link https://core.trac.wordpress.org/ticket/48319#comment:5
 		 */
-		if ( version_compare( $wp_version, '5.3', '<' ) ) {
+		if ( \version_compare( $wp_version, '5.3', '<' ) ) {
 			$expected = '123 - ABCD  1234 - 2019';
 		}
 
@@ -270,7 +268,7 @@ class DateTimeTest extends WP_UnitTestCase {
 		 *
 		 * @link https://core.trac.wordpress.org/ticket/48319#comment:5
 		 */
-		if ( version_compare( $wp_version, '5.3', '<' ) ) {
+		if ( \version_compare( $wp_version, '5.3', '<' ) ) {
 			$expected = '123 - ABCD 1234  - 2019';
 		}
 
