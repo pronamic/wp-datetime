@@ -1,6 +1,6 @@
 <?php
 /**
- * Date time
+ * Date time immutable
  *
  * @author    Pronamic <info@pronamic.eu>
  * @copyright 2005-2020 Pronamic
@@ -13,13 +13,13 @@
 namespace Pronamic\WordPress\DateTime;
 
 /**
- * Date time
+ * Date time immutable
  *
  * @author  Remco Tolsma
  * @version 1.2.0
- * @since   1.0.0
+ * @since   1.2.0
  */
-class DateTime extends \DateTime implements DateTimeInterface {
+class DateTimeImmutable extends \DateTimeImmutable implements DateTimeInterface {
 	use DateTimeTrait;
 
 	/**
@@ -27,21 +27,21 @@ class DateTime extends \DateTime implements DateTimeInterface {
 	 *
 	 * {@inheritdoc}
 	 *
-	 * @param \DateTimeImmutable $object Object.
+	 * @param \DateTime $object Object.
 	 * @return self
 	 */
-	public static function createFromImmutable( $object ) {
-		return self::create_from_immutable( $object );
+	public static function createFromMutable( $object ) {
+		return self::create_from_mutable( $object );
 	}
 
 	/**
-	 * Create from immutable.
+	 * Create from mutable.
 	 *
 	 * @link https://www.php.net/manual/en/datetimeimmutable.createfrommutable.php
-	 * @param \DateTimeImmutable $object The immutable DateTimeImmutable object that needs to be converted to a mutable version.
+	 * @param \DateTime $object The mutable DateTime object that you want to convert to an immutable version.
 	 * @return self
 	 */
-	public static function create_from_immutable( \DateTimeImmutable $object ) {
+	public static function create_from_mutable( \DateTime $object ) {
 		$instance = new self( '@' . $object->getTimestamp() );
 
 		return $instance->setTimezone( $object->getTimezone() );
