@@ -48,6 +48,8 @@ trait DateTimeTrait {
 	 * @link https://github.com/WordPress/WordPress/blob/4.9.6/wp-includes/functions.php#L103-L119
 	 * @link https://github.com/WordPress/WordPress/blob/4.9.6/wp-includes/class-wp-locale.php#L116-L235
 	 *
+	 * @global \WP_Locale $wp_locale WordPress date and time locale object.
+	 *
 	 * @param string $format Format.
 	 *
 	 * @return string
@@ -55,12 +57,16 @@ trait DateTimeTrait {
 	private function format_i18n_translate( $format ) {
 		global $wp_locale;
 
+		if ( ! $wp_locale instanceof \WP_Locale ) {
+			return $format;
+		}
+
 		if ( empty( $wp_locale->month ) || empty( $wp_locale->weekday ) ) {
 			return $format;
 		}
 
 		$month   = $wp_locale->get_month( $this->format( 'm' ) );
-		$weekday = $wp_locale->get_weekday( $this->format( 'w' ) );
+		$weekday = $wp_locale->get_weekday( \intval( $this->format( 'w' ) ) );
 
 		$format_length = \strlen( $format );
 
@@ -118,7 +124,7 @@ trait DateTimeTrait {
 	 * @link https://github.com/WordPress/WordPress/blob/4.9.6/wp-includes/functions.php#L120-L136
 	 * @link https://github.com/php/php-src/blob/php-7.2.7/ext/date/php_date.c#L1093-L1253
 	 *
-	 * @param string|null $format Format.
+	 * @param string $format Format.
 	 *
 	 * @return string
 	 */
@@ -172,7 +178,7 @@ trait DateTimeTrait {
 	 *
 	 * @since 1.0.1
 	 *
-	 * @return DateTime
+	 * @return self
 	 */
 	public function get_local_date() {
 		$wp_timezone = DateTimeZone::get_default();
@@ -186,11 +192,12 @@ trait DateTimeTrait {
 		 * @link https://3v4l.org/mlZX7
 		 */
 		if ( \version_compare( PHP_VERSION, '5.4.26', '<' ) || ( \version_compare( PHP_VERSION, '5.5', '>' ) && \version_compare( PHP_VERSION, '5.5.10', '<' ) ) ) {
-			return new DateTime( \gmdate( DateTimeInterface::MYSQL, $this->get_wp_timestamp() ), $wp_timezone );
+			return new self( \gmdate( DateTimeInterface::MYSQL, $this->get_wp_timestamp() ), $wp_timezone );
 		}
 
 		$date = clone $this;
-		$date->setTimezone( $wp_timezone );
+
+		$date = $date->setTimezone( $wp_timezone );
 
 		return $date;
 	}
@@ -201,10 +208,10 @@ trait DateTimeTrait {
 	 * @link https://developer.wordpress.org/reference/functions/__/
 	 *
 	 * @since 1.1.0
-	 * @param string|null $format Format.
+	 * @param string $format Format.
 	 * @return string
 	 */
-	public function format_translate( $format = null ) {
+	public function format_translate( $format ) {
 		$format = $this->format_i18n_translate( $format );
 		$format = $this->format_i18n_timezone( $format );
 
@@ -244,7 +251,7 @@ trait DateTimeTrait {
 	 *
 	 * {@inheritdoc}
 	 *
-	 * @return bool|static
+	 * @return self|false
 	 */
 	// phpcs:ignore WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid
 	public static function createFromFormat( $format, $time, $timezone = null ) {
@@ -254,16 +261,16 @@ trait DateTimeTrait {
 	/**
 	 * Parse a string into a new DateTime object according to the specified format.
 	 *
+	 * @link http://php.net/manual/en/datetime.createfromformat.php
+	 * @link https://github.com/Rarst/wpdatetime/blob/0.3/src/WpDateTimeTrait.php#L56-L77
+	 *
 	 * @since 1.0.1
 	 *
 	 * @param string        $format   Format accepted by date().
 	 * @param string        $time     String representing the time.
 	 * @param \DateTimeZone $timezone A DateTimeZone object representing the desired time zone.
 	 *
-	 * @return DateTime|false
-	 *
-	 * @link http://php.net/manual/en/datetime.createfromformat.php
-	 * @link https://github.com/Rarst/wpdatetime/blob/0.3/src/WpDateTimeTrait.php#L56-L77
+	 * @return self|false
 	 */
 	public static function create_from_format( $format, $time, \DateTimeZone $timezone = null ) {
 		/*
@@ -278,9 +285,11 @@ trait DateTimeTrait {
 			return false;
 		}
 
-		$wp_date_time = new static( '@' . $created->getTimestamp() );
+		$wp_date_time = new self( '@' . $created->getTimestamp() );
 
-		$wp_date_time->setTimezone( $created->getTimezone() );
+		if ( null !== $timezone ) {
+			$wp_date_time = $wp_date_time->setTimezone( $timezone );
+		}
 
 		return $wp_date_time;
 	}

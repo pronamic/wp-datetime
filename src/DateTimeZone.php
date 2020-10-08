@@ -18,6 +18,7 @@ namespace Pronamic\WordPress\DateTime;
  * @author  Remco Tolsma
  * @version 1.2.0
  * @since   1.0.0
+ * @psalm-immutable
  */
 class DateTimeZone extends \DateTimeZone {
 	/**
@@ -26,7 +27,7 @@ class DateTimeZone extends \DateTimeZone {
 	 * @link https://github.com/Rarst/wpdatetime/blob/0.3/src/WpDateTimeZone.php
 	 * @link https://github.com/WordPress/WordPress/blob/4.9.4/wp-includes/functions.php#L72-L151
 	 *
-	 * @return DateTimeZone
+	 * @return \DateTimeZone
 	 */
 	public static function get_default() {
 		$timezone_string = \get_option( 'timezone_string' );
@@ -51,21 +52,20 @@ class DateTimeZone extends \DateTimeZone {
 			return $date->getTimezone();
 		}
 
-		return new DateTimeZone( $offset );
+		return new \DateTimeZone( $offset );
 	}
 
 	/**
 	 * Get offset.
 	 *
-	 * @param \DateTime $date DateTime object.
-	 *
-	 * @return float|int
+	 * @param \DateTimeInterface $date DateTime object.
+	 * @return int
 	 */
 	public static function get_offset( $date ) {
 		$timezone_string = \get_option( 'timezone_string' );
 
 		if ( empty( $timezone_string ) ) {
-			return \floatval( \get_option( 'gmt_offset', 0 ) ) * HOUR_IN_SECONDS;
+			return \intval( \floatval( \get_option( 'gmt_offset', 0 ) ) * HOUR_IN_SECONDS );
 		}
 
 		$timezone = new DateTimeZone( $timezone_string );

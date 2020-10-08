@@ -27,7 +27,8 @@ class DateTimeImmutable extends \DateTimeImmutable implements DateTimeInterface 
 	 *
 	 * {@inheritdoc}
 	 *
-	 * @return static
+	 * @param \DateTime $object Object.
+	 * @return self
 	 */
 	public static function createFromMutable( $object ) {
 		return self::create_from_mutable( $object );
@@ -38,10 +39,10 @@ class DateTimeImmutable extends \DateTimeImmutable implements DateTimeInterface 
 	 *
 	 * @link https://www.php.net/manual/en/datetimeimmutable.createfrommutable.php
 	 * @param \DateTime $object The mutable DateTime object that you want to convert to an immutable version.
-	 * @return static
+	 * @return self
 	 */
 	public static function create_from_mutable( \DateTime $object ) {
-		$instance = new static( '@' . $object->getTimestamp() );
+		$instance = new self( '@' . $object->getTimestamp() );
 
 		return $instance->setTimezone( $object->getTimezone() );
 	}

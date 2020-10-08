@@ -56,4 +56,34 @@ class DateTimeZoneTest extends \WP_UnitTestCase {
 			array( null, 12.75, '+12:45' ),
 		);
 	}
+
+	/**
+	 * WordPress stores offset in hours, `DateTimeZone::getOffset` will return in seconds.
+	 *
+	 * @dataProvider provider_test_offsets
+	 */
+	public function test_offsets( $wp_offset, $php_offset ) {
+		\update_option( 'timezone_string', null );
+		\update_option( 'gmt_offset', $wp_offset );
+
+		$date = new \DateTime( '2015-05-05 00:00:00', new DateTimeZone( 'UTC' ) );
+
+		$this->assertEquals( $php_offset, DateTimeZone::get_offset( $date ) );
+	}
+
+	/**
+	 * Provider for the format i18n test.
+	 *
+	 * @return array
+	 */
+	public function provider_test_offsets() {
+		return array(
+			array( 12.75, 45900 ),
+			array( 12.751, 45903 ),
+			array( 12.758, 45928 ),
+			array( -12.75, -45900 ),
+			array( -12.751, -45903 ),
+			array( -12.758, -45928 ),
+		);
+	}
 }

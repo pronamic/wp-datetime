@@ -20,6 +20,7 @@
 		"php": ">=5.6.20"
 	},
 	"require-dev": {
+		"bamarni/composer-bin-plugin": "^1.4",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
 		"koodimonni-language/de_de": "*",
 		"koodimonni-language/fr_fr": "*",
@@ -48,6 +49,8 @@
 			"for file in vendor/koodimonni-language/*/* ; do ln -f -s ../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/. ; done",
 			"for file in vendor/koodimonni-plugin-language/*/* ; do ln -f -s ../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/plugins/. ; done",
 			"for file in vendor/koodimonni-theme-language/*/* ; do ln -f -s ../../../../../$file vendor/wp-phpunit/wp-phpunit/data/languages/themes/. ; done"
-		]
+		],
+		"post-install-cmd": "echo 'Optionally run: composer bin all install'",
+		"post-update-cmd": "echo 'Optionally run: composer bin all update'"
 	}
 }
