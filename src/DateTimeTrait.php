@@ -30,7 +30,7 @@ trait DateTimeTrait {
 	 * @return string
 	 */
 	private static function slash_date_format_characters( $value ) {
-		$charlist = implode( '', self::DATE_FORMAT_CHARACTERS );
+		$charlist = implode( '', DateTimeInterface::DATE_FORMAT_CHARACTERS );
 
 		// Backslash the backslash.
 		$charlist .= '\\';
@@ -186,7 +186,7 @@ trait DateTimeTrait {
 		 * @link https://3v4l.org/mlZX7
 		 */
 		if ( \version_compare( PHP_VERSION, '5.4.26', '<' ) || ( \version_compare( PHP_VERSION, '5.5', '>' ) && \version_compare( PHP_VERSION, '5.5.10', '<' ) ) ) {
-			return new DateTime( \gmdate( self::MYSQL, $this->get_wp_timestamp() ), $wp_timezone );
+			return new DateTime( \gmdate( DateTimeInterface::MYSQL, $this->get_wp_timestamp() ), $wp_timezone );
 		}
 
 		$date = clone $this;
@@ -267,7 +267,7 @@ trait DateTimeTrait {
 		}
 
 		try {
-			$wp_date_time = new self( '@' . $created->getTimestamp() );
+			$wp_date_time = new static( '@' . $created->getTimestamp() );
 		} catch ( \Exception $e ) {
 			return false;
 		}
