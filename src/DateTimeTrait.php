@@ -35,7 +35,7 @@ trait DateTimeTrait {
 		// Backslash the backslash.
 		$charlist .= '\\';
 
-		$value = addcslashes( $value, $charlist );
+		$value = \addcslashes( $value, $charlist );
 
 		return $value;
 	}
@@ -62,7 +62,7 @@ trait DateTimeTrait {
 		$month   = $wp_locale->get_month( $this->format( 'm' ) );
 		$weekday = $wp_locale->get_weekday( $this->format( 'w' ) );
 
-		$format_length = strlen( $format );
+		$format_length = \strlen( $format );
 
 		$format_new = '';
 
@@ -123,7 +123,7 @@ trait DateTimeTrait {
 	 * @return string
 	 */
 	private function format_i18n_timezone( $format ) {
-		$format_length = strlen( $format );
+		$format_length = \strlen( $format );
 
 		$format_new = '';
 
@@ -185,7 +185,7 @@ trait DateTimeTrait {
 		 * @link https://bugs.php.net/bug.php?id=45543
 		 * @link https://3v4l.org/mlZX7
 		 */
-		if ( version_compare( PHP_VERSION, '5.4.26', '<' ) || ( version_compare( PHP_VERSION, '5.5', '>' ) && version_compare( PHP_VERSION, '5.5.10', '<' ) ) ) {
+		if ( \version_compare( PHP_VERSION, '5.4.26', '<' ) || ( \version_compare( PHP_VERSION, '5.5', '>' ) && \version_compare( PHP_VERSION, '5.5.10', '<' ) ) ) {
 			return new DateTime( \gmdate( self::MYSQL, $this->get_wp_timestamp() ), $wp_timezone );
 		}
 
@@ -223,10 +223,10 @@ trait DateTimeTrait {
 	 * @return string
 	 */
 	public function format_i18n( $format = null ) {
-		if ( is_null( $format ) ) {
-			$format = _x( 'D j M Y \a\t H:i', 'default datetime format', 'pronamic-datetime' );
+		if ( \is_null( $format ) ) {
+			$format = \_x( 'D j M Y \a\t H:i', 'default datetime format', 'pronamic-datetime' );
 
-			$format = apply_filters( 'pronamic_datetime_default_format', $format );
+			$format = \apply_filters( 'pronamic_datetime_default_format', $format );
 		}
 
 		$date = $this->get_local_date();
@@ -234,7 +234,7 @@ trait DateTimeTrait {
 		$format = $date->format_i18n_translate( $format );
 		$format = $date->format_i18n_timezone( $format );
 
-		$result = date_i18n( $format, $date->get_wp_timestamp() );
+		$result = \date_i18n( $format, $date->get_wp_timestamp() );
 
 		return $result;
 	}
