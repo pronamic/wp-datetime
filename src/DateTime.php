@@ -21,4 +21,28 @@ namespace Pronamic\WordPress\DateTime;
  */
 class DateTime extends \DateTime implements DateTimeInterface {
 	use DateTimeTrait;
+
+	/**
+	 * Overrides upstream method to correct returned instance type to the inheriting one.
+	 *
+	 * {@inheritdoc}
+	 *
+	 * @return static
+	 */
+	public static function createFromImmutable( $object ) {
+		return self::create_from_immutable( $object );
+	}
+
+	/**
+	 * Create from immutable.
+	 *
+	 * @link https://www.php.net/manual/en/datetimeimmutable.createfrommutable.php
+	 * @param \DateTimeImmutable $object The immutable DateTimeImmutable object that needs to be converted to a mutable version.
+	 * @return static
+	 */
+	public static function create_from_immutable( \DateTimeImmutable $object ) {
+		$instance = new static( '@' . $object->getTimestamp() );
+
+		return $instance->setTimezone( $object->getTimezone() );
+	}
 }

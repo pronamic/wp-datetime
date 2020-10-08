@@ -240,6 +240,18 @@ trait DateTimeTrait {
 	}
 
 	/**
+	 * Overrides upstream method to correct returned instance type to the inheriting one.
+	 *
+	 * {@inheritdoc}
+	 *
+	 * @return bool|static
+	 */
+	// phpcs:ignore WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid
+	public static function createFromFormat( $format, $time, $timezone = null ) {
+		return self::create_from_format( $format, $time, $timezone );
+	}
+
+	/**
 	 * Parse a string into a new DateTime object according to the specified format.
 	 *
 	 * @since 1.0.1
