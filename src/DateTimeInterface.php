@@ -75,6 +75,7 @@ interface DateTimeInterface extends \DateTimeInterface {
 		// Timezone.
 		'I',
 		'P',
+		'p',
 		'O',
 		'T',
 		'e',
