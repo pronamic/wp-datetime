@@ -7,6 +7,9 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [1.2.2] - 2021-08-26
+- Added the character `p` to the date format characters list which was added in PHP 8.
+
 ## [1.2.1] - 2021-04-26
 - Happy 2021.
 
@@ -38,7 +41,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0
 - First release.
 
-[unreleased]: https://github.com/pronamic/wp-datetime/compare/1.2.1...HEAD
+[unreleased]: https://github.com/pronamic/wp-datetime/compare/1.2.2...HEAD
+[1.2.2]: https://github.com/pronamic/wp-datetime/compare/1.2.1...1.2.2
 [1.2.1]: https://github.com/pronamic/wp-datetime/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/pronamic/wp-datetime/compare/1.1.1...1.2.0
 [1.1.1]: https://github.com/pronamic/wp-datetime/compare/1.1.0...1.1.1
