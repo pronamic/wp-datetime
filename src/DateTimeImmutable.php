@@ -51,7 +51,7 @@ class DateTimeImmutable extends \DateTimeImmutable implements DateTimeInterface 
 	 *
 	 * @link https://www.php.net/manual/en/datetime.createfrominterface.php
 	 * @link https://php.watch/versions/8.0/datetime-immutable-createfrominterface
-	 * @param \DateTime $object The mutable DateTime object that you want to convert to an immutable version.
+	 * @param \DateTimeInterface $object The mutable DateTime object that you want to convert to an immutable version.
 	 * @return self
 	 */
 	public static function create_from_interface( \DateTimeInterface $object ) {
