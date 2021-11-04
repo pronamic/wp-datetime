@@ -23,30 +23,6 @@ class DateTimeImmutable extends \DateTimeImmutable implements DateTimeInterface 
 	use DateTimeTrait;
 
 	/**
-	 * Overrides upstream method to correct returned instance type to the inheriting one.
-	 *
-	 * {@inheritdoc}
-	 *
-	 * @param \DateTime $object Object.
-	 * @return self
-	 */
-	public static function createFromMutable( $object ) {
-		return self::create_from_interface( $object );
-	}
-
-	/**
-	 * Overrides upstream method to correct returned instance type to the inheriting one.
-	 *
-	 * {@inheritdoc}
-	 *
-	 * @param \DateTime $object Object.
-	 * @return self
-	 */
-	public static function createFromInterface( \DateTimeInterface $object ) {
-		return self::create_from_interface( $object );
-	}
-
-	/**
 	 * Create from interface.
 	 *
 	 * @link https://www.php.net/manual/en/datetime.createfrominterface.php
