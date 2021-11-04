@@ -31,19 +31,30 @@ class DateTime extends \DateTime implements DateTimeInterface {
 	 * @return self
 	 */
 	public static function createFromImmutable( $object ) {
-		return self::create_from_immutable( $object );
+		return self::create_from_interface( $object );
 	}
 
 	/**
-	 * Create from immutable.
+	 * Overrides upstream method to correct returned instance type to the inheriting one.
 	 *
-	 * @link https://www.php.net/manual/en/datetimeimmutable.createfrommutable.php
-	 * @param \DateTimeImmutable $object The immutable DateTimeImmutable object that needs to be converted to a mutable version.
+	 * {@inheritdoc}
+	 *
+	 * @param \DateTime $object Object.
 	 * @return self
 	 */
-	public static function create_from_immutable( \DateTimeImmutable $object ) {
-		$instance = new self( '@' . $object->getTimestamp() );
+	public static function createFromInterface( \DateTimeInterface $object ) {
+		return self::create_from_interface( $object );
+	}
 
-		return $instance->setTimezone( $object->getTimezone() );
+	/**
+	 * Create from interface.
+	 *
+	 * @link https://www.php.net/manual/en/datetime.createfrominterface.php
+	 * @link https://php.watch/versions/8.0/datetime-immutable-createfrominterface
+	 * @param \DateTime $object The mutable DateTime object that you want to convert to an immutable version.
+	 * @return self
+	 */
+	public static function create_from_interface( \DateTimeInterface $object ) {
+		return new self( $object->format('Y-m-d H:i:s.u'), $object->getTimezone() );
 	}
 }

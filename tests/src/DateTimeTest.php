@@ -274,4 +274,46 @@ class DateTimeTest extends \WP_UnitTestCase {
 
 		$this->assertEquals( $expected, \date_i18n( '123 - F - Y', \strtotime( $string ) ) );
 	}
+
+	/**
+	 * Test create mutable from interface.
+	 */
+	public function test_create_mutable_from_interface() {
+		$date = new \DateTime( '2005-05-05 10:15:00', new \DateTimeZone( 'Europe/Amsterdam' ) );
+
+		$test = DateTime::create_from_interface( $date );
+
+		$this->assertInstanceOf( DateTime::class, $test );
+		$this->assertEquals( '2005-05-05 10:15:00', $test->format( 'Y-m-d H:i:s' ) );
+		$this->assertEquals( 'Europe/Amsterdam', $test->getTimezone()->getName() );
+
+		$date = new DateTime('15-07-2014 18:30:00.123456', new \DateTimeZone( 'UTC' ) );
+
+		$test = DateTime::create_from_interface( $date );
+
+		$this->assertInstanceOf( DateTime::class, $test );
+		$this->assertEquals( '2014-07-15 18:30:00.123456', $test->format( 'Y-m-d H:i:s.u' ) );
+		$this->assertEquals( 'UTC', $test->getTimezone()->getName() );
+	}
+
+	/**
+	 * Test create mutable from interface.
+	 */
+	public function test_create_immutable_from_interface() {
+		$date = new \DateTime( '2005-05-05 10:15:00', new \DateTimeZone( 'Europe/Amsterdam' ) );
+
+		$test = DateTimeImmutable::create_from_interface( $date );
+
+		$this->assertInstanceOf( DateTimeImmutable::class, $test );
+		$this->assertEquals( '2005-05-05 10:15:00', $test->format( 'Y-m-d H:i:s' ) );
+		$this->assertEquals( 'Europe/Amsterdam', $test->getTimezone()->getName() );
+
+		$date = new DateTime('15-07-2014 18:30:00.123456', new \DateTimeZone( 'UTC' ) );
+
+		$test = DateTimeImmutable::create_from_interface( $date );
+
+		$this->assertInstanceOf( DateTimeImmutable::class, $test );
+		$this->assertEquals( '2014-07-15 18:30:00.123456', $test->format( 'Y-m-d H:i:s.u' ) );
+		$this->assertEquals( 'UTC', $test->getTimezone()->getName() );
+	}
 }
