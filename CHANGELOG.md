@@ -7,6 +7,14 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.0.0] - 2022-01-10
+### Added
+- Added `DateTimeTrait::create_from_interface`.
+
+### Removed
+- Removed `DateTime::create_from_mutable`.
+- Removed `DateTimeImmutable::create_from_mutable`.
+
 ## [1.2.2] - 2021-08-26
 - Added the character `p` to the date format characters list which was added in PHP 8.
 
@@ -41,7 +49,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0
 - First release.
 
-[unreleased]: https://github.com/pronamic/wp-datetime/compare/1.2.2...HEAD
+[unreleased]: https://github.com/pronamic/wp-datetime/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/pronamic/wp-datetime/compare/1.2.2...2.0.0
 [1.2.2]: https://github.com/pronamic/wp-datetime/compare/1.2.1...1.2.2
 [1.2.1]: https://github.com/pronamic/wp-datetime/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/pronamic/wp-datetime/compare/1.1.1...1.2.0

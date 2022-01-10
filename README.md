@@ -29,3 +29,5 @@ Source: https://developer.wordpress.org/reference/functions/date_i18n/#comment-2
 
 *	https://github.com/woocommerce/woocommerce/blob/3.3.5/includes/class-wc-datetime.php
 *	https://github.com/Rarst/wpdatetime
+
+[![Pronamic - Work with us](https://github.com/pronamic/brand-resources/blob/main/banners/pronamic-work-with-us-leaderboard-728x90%404x.png)](https://www.pronamic.eu/contact/)
