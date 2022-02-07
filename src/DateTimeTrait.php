@@ -303,6 +303,6 @@ trait DateTimeTrait {
 	 * @return self
 	 */
 	public static function create_from_interface( \DateTimeInterface $object ) {
-		return new self( $object->format('Y-m-d H:i:s.u'), $object->getTimezone() );
+		return new self( $object->format( 'Y-m-d H:i:s.u' ), $object->getTimezone() );
 	}
 }
