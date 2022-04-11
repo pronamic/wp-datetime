@@ -7,6 +7,10 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.0.1] - 2022-04-11
+### Changed
+- Coding standards.
+
 ## [2.0.0] - 2022-01-10
 ### Added
 - Added `DateTimeTrait::create_from_interface`.
