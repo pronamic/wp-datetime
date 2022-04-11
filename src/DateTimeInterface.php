@@ -35,7 +35,7 @@ interface DateTimeInterface extends \DateTimeInterface {
 	 *
 	 * @link https://www.php.net/manual/en/function.date.php
 	 * @link https://github.com/php/php-src/blob/php-7.3.10/ext/date/php_date.c#L1128-L1288
-	 * @var array
+	 * @var string[]
 	 */
 	const DATE_FORMAT_CHARACTERS = array(
 		// Day.
