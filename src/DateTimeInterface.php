@@ -37,7 +37,7 @@ interface DateTimeInterface extends \DateTimeInterface {
 	 * @link https://github.com/php/php-src/blob/php-7.3.10/ext/date/php_date.c#L1128-L1288
 	 * @var string[]
 	 */
-	const DATE_FORMAT_CHARACTERS = array(
+	const DATE_FORMAT_CHARACTERS = [
 		// Day.
 		'd',
 		'D',
@@ -84,7 +84,7 @@ interface DateTimeInterface extends \DateTimeInterface {
 		'c',
 		'r',
 		'U',
-	);
+	];
 
 	/**
 	 * Format I18N.

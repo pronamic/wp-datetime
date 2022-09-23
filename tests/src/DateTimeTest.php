@@ -60,23 +60,23 @@ class DateTimeTest extends \WP_UnitTestCase {
 	 * @return array
 	 */
 	public function provider_test_format_i18n() {
-		return array(
+		return [
 			// Dutch.
-			array( 'nl_NL', 'UTC', null, '2015-05-05 mei 13:00:00 +00:00 UTC UTC', '2015-05-05 15:00:00', 'Europe/Amsterdam' ),
-			array( 'nl_NL', 'Europe/Amsterdam', null, '2015-05-05 mei 15:00:00 +02:00 CEST Europe/Amsterdam', '2015-05-05 13:00:00', 'UTC' ),
-			array( 'nl_NL', null, 2, '2015-05-05 mei 15:00:00 +02:00 GMT+0200 +02:00', '2015-05-05 13:00:00', 'UTC' ),
-			array( 'nl_NL', null, 12.75, '2015-05-06 mei 01:45:00 +12:45 GMT+1245 +12:45', '2015-05-05 13:00:00', 'UTC' ),
-			array( 'nl_NL', 'UTC', null, '2016-03-11 maart 10:00:00 +00:00 UTC UTC', '2016-03-11 11:00:00', 'Europe/Amsterdam' ),
-			array( 'nl_NL', 'UTC', null, '2016-04-11 april 09:00:00 +00:00 UTC UTC', '2016-04-11 11:00:00', 'Europe/Amsterdam' ),
-			array( 'nl_NL', 'Europe/Amsterdam', null, '2016-03-11 maart 11:00:00 +01:00 CET Europe/Amsterdam', '2016-03-11 10:00:00', 'UTC' ),
-			array( 'nl_NL', 'Europe/Amsterdam', null, '2016-04-11 april 11:00:00 +02:00 CEST Europe/Amsterdam', '2016-04-11 09:00:00', 'UTC' ),
-			array( 'nl_NL', null, 2, '2016-03-11 maart 12:00:00 +02:00 GMT+0200 +02:00', '2016-03-11 10:00:00', 'UTC' ),
-			array( 'nl_NL', null, 2, '2016-04-11 april 11:00:00 +02:00 GMT+0200 +02:00', '2016-04-11 09:00:00', 'UTC' ),
+			[ 'nl_NL', 'UTC', null, '2015-05-05 mei 13:00:00 +00:00 UTC UTC', '2015-05-05 15:00:00', 'Europe/Amsterdam' ],
+			[ 'nl_NL', 'Europe/Amsterdam', null, '2015-05-05 mei 15:00:00 +02:00 CEST Europe/Amsterdam', '2015-05-05 13:00:00', 'UTC' ],
+			[ 'nl_NL', null, 2, '2015-05-05 mei 15:00:00 +02:00 GMT+0200 +02:00', '2015-05-05 13:00:00', 'UTC' ],
+			[ 'nl_NL', null, 12.75, '2015-05-06 mei 01:45:00 +12:45 GMT+1245 +12:45', '2015-05-05 13:00:00', 'UTC' ],
+			[ 'nl_NL', 'UTC', null, '2016-03-11 maart 10:00:00 +00:00 UTC UTC', '2016-03-11 11:00:00', 'Europe/Amsterdam' ],
+			[ 'nl_NL', 'UTC', null, '2016-04-11 april 09:00:00 +00:00 UTC UTC', '2016-04-11 11:00:00', 'Europe/Amsterdam' ],
+			[ 'nl_NL', 'Europe/Amsterdam', null, '2016-03-11 maart 11:00:00 +01:00 CET Europe/Amsterdam', '2016-03-11 10:00:00', 'UTC' ],
+			[ 'nl_NL', 'Europe/Amsterdam', null, '2016-04-11 april 11:00:00 +02:00 CEST Europe/Amsterdam', '2016-04-11 09:00:00', 'UTC' ],
+			[ 'nl_NL', null, 2, '2016-03-11 maart 12:00:00 +02:00 GMT+0200 +02:00', '2016-03-11 10:00:00', 'UTC' ],
+			[ 'nl_NL', null, 2, '2016-04-11 april 11:00:00 +02:00 GMT+0200 +02:00', '2016-04-11 09:00:00', 'UTC' ],
 			// English.
-			array( 'en_US', 'UTC', null, '2015-05-05 May 13:00:00 +00:00 UTC UTC', '2015-05-05 15:00:00', 'Europe/Amsterdam' ),
+			[ 'en_US', 'UTC', null, '2015-05-05 May 13:00:00 +00:00 UTC UTC', '2015-05-05 15:00:00', 'Europe/Amsterdam' ],
 			// French.
-			array( 'fr_FR', 'UTC', null, '2015-05-05 mai 13:00:00 +00:00 UTC UTC', '2015-05-05 15:00:00', 'Europe/Amsterdam' ),
-		);
+			[ 'fr_FR', 'UTC', null, '2015-05-05 mai 13:00:00 +00:00 UTC UTC', '2015-05-05 15:00:00', 'Europe/Amsterdam' ],
+		];
 	}
 
 	/**
@@ -101,11 +101,11 @@ class DateTimeTest extends \WP_UnitTestCase {
 	 * @return array
 	 */
 	public function provider_create_from_format() {
-		return array(
-			array( 'j-M-Y H:i:s', '15-Feb-2009 10:00:00', null, '2009-02-15T10:00:00+00:00' ),
-			array( 'j-M-Y H:i:s', '15-Feb-2009 10:00:00', new DateTimeZone( 'Europe/Amsterdam' ), '2009-02-15T10:00:00+01:00' ),
-			array( 'j-M-Y H:i:s', '15-Feb-2009 10:00:00', new DateTimeZone( 'America/Regina' ), '2009-02-15T10:00:00-06:00' ),
-		);
+		return [
+			[ 'j-M-Y H:i:s', '15-Feb-2009 10:00:00', null, '2009-02-15T10:00:00+00:00' ],
+			[ 'j-M-Y H:i:s', '15-Feb-2009 10:00:00', new DateTimeZone( 'Europe/Amsterdam' ), '2009-02-15T10:00:00+01:00' ],
+			[ 'j-M-Y H:i:s', '15-Feb-2009 10:00:00', new DateTimeZone( 'America/Regina' ), '2009-02-15T10:00:00-06:00' ],
+		];
 	}
 
 	/**
