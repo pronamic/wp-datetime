@@ -49,12 +49,12 @@ class DateTimeZoneTest extends \WP_UnitTestCase {
 	 * @return array
 	 */
 	public function provider_test_get_default() {
-		return array(
-			array( 'UTC', null, 'UTC' ),
-			array( 'Europe/Amsterdam', null, 'Europe/Amsterdam' ),
-			array( null, 2, '+02:00' ),
-			array( null, 12.75, '+12:45' ),
-		);
+		return [
+			[ 'UTC', null, 'UTC' ],
+			[ 'Europe/Amsterdam', null, 'Europe/Amsterdam' ],
+			[ null, 2, '+02:00' ],
+			[ null, 12.75, '+12:45' ],
+		];
 	}
 
 	/**
@@ -77,13 +77,13 @@ class DateTimeZoneTest extends \WP_UnitTestCase {
 	 * @return array
 	 */
 	public function provider_test_offsets() {
-		return array(
-			array( 12.75, 45900 ),
-			array( 12.751, 45903 ),
-			array( 12.758, 45928 ),
-			array( -12.75, -45900 ),
-			array( -12.751, -45903 ),
-			array( -12.758, -45928 ),
-		);
+		return [
+			[ 12.75, 45900 ],
+			[ 12.751, 45903 ],
+			[ 12.758, 45928 ],
+			[ -12.75, -45900 ],
+			[ -12.751, -45903 ],
+			[ -12.758, -45928 ],
+		];
 	}
 }
