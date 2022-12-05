@@ -254,7 +254,7 @@ trait DateTimeTrait {
 	 * @return self|false
 	 */
 	// phpcs:ignore WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid
-	public static function createFromFormat( $format, $time, $timezone = null ) {
+	public static function createFromFormat( $format, $time, $timezone = null ): self|false {
 		return self::create_from_format( $format, $time, $timezone );
 	}
 
@@ -272,7 +272,7 @@ trait DateTimeTrait {
 	 *
 	 * @return self|false
 	 */
-	public static function create_from_format( $format, $time, \DateTimeZone $timezone = null ) {
+	public static function create_from_format( $format, $time, \DateTimeZone $timezone = null ): self|false {
 		/*
 		 * In PHP 5.6 or lower it's not possible to pass in an empty (null) timezone object.
 		 * This will result in a `DateTime::createFromFormat() expects parameter 3 to be DateTimeZone, null given` error.
@@ -302,7 +302,7 @@ trait DateTimeTrait {
 	 * @param \DateTimeInterface $object The mutable DateTime object that you want to convert to an immutable version.
 	 * @return self
 	 */
-	public static function create_from_interface( \DateTimeInterface $object ) {
+	public static function create_from_interface( \DateTimeInterface $object ): self {
 		return new self( $object->format( 'Y-m-d H:i:s.u' ), $object->getTimezone() );
 	}
 }
