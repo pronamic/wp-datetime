@@ -19,6 +19,6 @@ namespace Pronamic\WordPress\DateTime;
  * @version 1.2.0
  * @since   1.2.0
  */
-class DateTimeImmutable extends \DateTimeImmutable implements DateTimeInterface {
+class DateTimeImmutable extends \DateTimeImmutable implements \Pronamic\WordPress\DateTime\DateTimeInterface {
 	use DateTimeTrait;
 }
