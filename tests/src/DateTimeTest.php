@@ -10,6 +10,8 @@
 
 namespace Pronamic\WordPress\DateTime;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * DateTime Test
  *
@@ -17,7 +19,7 @@ namespace Pronamic\WordPress\DateTime;
  * @version 1.0.2
  * @since   1.0.0
  */
-class DateTimeTest extends \WP_UnitTestCase {
+class DateTimeTest extends TestCase {
 	/**
 	 * Test constructor.
 	 *
