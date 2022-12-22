@@ -75,7 +75,7 @@ class DateTimeTest extends TestCase {
 			[ 'nl_NL', null, 2, '2016-03-11 maart 12:00:00 +02:00 GMT+0200 +02:00', '2016-03-11 10:00:00', 'UTC' ],
 			[ 'nl_NL', null, 2, '2016-04-11 april 11:00:00 +02:00 GMT+0200 +02:00', '2016-04-11 09:00:00', 'UTC' ],
 			// English.
-			[ 'en_US', 'UTC', null, '2015-05-05 May 13:00:00 +00:00 UTC UTC', '2015-05-05 15:00:00', 'Europe/Amsterdam' ],
+			[ 'en_GB', 'UTC', null, '2015-05-05 May 13:00:00 +00:00 UTC UTC', '2015-05-05 15:00:00', 'Europe/Amsterdam' ],
 			// French.
 			[ 'fr_FR', 'UTC', null, '2015-05-05 mai 13:00:00 +00:00 UTC UTC', '2015-05-05 15:00:00', 'Europe/Amsterdam' ],
 		];
@@ -133,7 +133,7 @@ class DateTimeTest extends TestCase {
 	 * @link https://github.com/WordPress/WordPress/blob/5.2/wp-includes/formatting.php#L2615-L2628
 	 */
 	public function test_format_with_number_at_start() {
-		\switch_to_locale( 'en_US' );
+		\switch_to_locale( 'en_GB' );
 
 		$date = new DateTime( '2019-10-16 00:00:00' );
 
@@ -164,7 +164,7 @@ class DateTimeTest extends TestCase {
 	public function test_date_format_characters_in_translation() {
 		global $wp_locale;
 
-		\switch_to_locale( 'en_US' );
+		\switch_to_locale( 'en_GB' );
 
 		$month_translation = 'dDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrU';
 
@@ -188,7 +188,7 @@ class DateTimeTest extends TestCase {
 	public function test_utf8_characters_in_translation() {
 		global $wp_locale;
 
-		\switch_to_locale( 'en_US' );
+		\switch_to_locale( 'en_GB' );
 
 		$month_translation = 'ⒶⒷⒸdDjlSwNzWoFmMntLyYaABgGhHisuvIPOTeZcrUⓍⓎⓏ';
 
@@ -213,7 +213,7 @@ class DateTimeTest extends TestCase {
 		global $wp_locale;
 		global $wp_version;
 
-		\switch_to_locale( 'en_US' );
+		\switch_to_locale( 'en_GB' );
 
 		$month_translation = 'ABCD \ 1234';
 
@@ -250,7 +250,7 @@ class DateTimeTest extends TestCase {
 		global $wp_locale;
 		global $wp_version;
 
-		\switch_to_locale( 'en_US' );
+		\switch_to_locale( 'en_GB' );
 
 		$month_translation = 'ABCD 1234 \\';
 
