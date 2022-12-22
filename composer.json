@@ -26,7 +26,7 @@
 		"php": ">=8.0"
 	},
 	"require-dev": {
-		"automattic/wordbless": "^0.4.0",
+		"automattic/wordbless": "^0.3 || ^0.4",
 		"bamarni/composer-bin-plugin": "^1.4",
 		"koodimonni-language/de_de": "*",
 		"koodimonni-language/en_gb": "*",
@@ -38,7 +38,7 @@
 		"phpmd/phpmd": "^2.9",
 		"pronamic/wp-coding-standards": "^1.3",
 		"pronamic/wp-deployer": "^1.1",
-		"roots/wordpress": "^5.9 || ^6.0.2",
+		"roots/wordpress": "^6.0",
 		"vlucas/phpdotenv": "^2.0",
 		"yoast/phpunit-polyfills": "^1.0"
 	},
@@ -65,11 +65,11 @@
 		],
 		"post-install-cmd": [
 			"echo 'Optionally run: composer bin all install'",
-			"WorDBless\\Composer\\InstallDropin::copy"
+			"mkdir -p wordpress/wp-content && cp vendor/automattic/wordbless/src/dbless-wpdb.php wordpress/wp-content/db.php"
 		],
 		"post-update-cmd": [
 			"echo 'Optionally run: composer bin all update'",
-			"WorDBless\\Composer\\InstallDropin::copy"
+			"mkdir -p wordpress/wp-content && cp vendor/automattic/wordbless/src/dbless-wpdb.php wordpress/wp-content/db.php"
 		],
 		"psalm": "vendor/bin/psalm"
 	}
