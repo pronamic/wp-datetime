@@ -7,6 +7,16 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.1.1] - 2022-12-28
+
+### Commits
+
+- Improve compatibility with PHP versions < 8.0. ([7842a7f](https://github.com/pronamic/wp-datetime/commit/7842a7f4978595b8341311d315c742ae66e569b8))
+
+Full set of changes: [`2.1.0...2.1.1`][2.1.1]
+
+[2.1.1]: https://github.com/pronamic/wp-datetime/compare/v2.1.0...v2.1.1
+
 ## [2.1.0] - 2022-12-19
 - Increased minimum PHP version to version `8` or higher.
 - Improved support for PHP `8.1` and `8.2`.

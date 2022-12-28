@@ -4,7 +4,7 @@
  * Plugin URI: https://www.pronamic.eu/plugins/pronamic-datetime/
  * Description: WordPress DateTime library.
  *
- * Version: 2.1.0
+ * Version: 2.1.1
  * Requires at least: 4.7
  * Requires PHP: 8.0
  *
