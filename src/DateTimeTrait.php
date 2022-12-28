@@ -253,8 +253,9 @@ trait DateTimeTrait {
 	 *
 	 * @return self|false
 	 */
+	#[\ReturnTypeWillChange]
 	// phpcs:ignore WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid
-	public static function createFromFormat( $format, $time, $timezone = null ): self|false {
+	public static function createFromFormat( $format, $time, $timezone = null ) {
 		return self::create_from_format( $format, $time, $timezone );
 	}
 
@@ -272,7 +273,8 @@ trait DateTimeTrait {
 	 *
 	 * @return self|false
 	 */
-	public static function create_from_format( $format, $time, \DateTimeZone $timezone = null ): self|false {
+	#[\ReturnTypeWillChange]
+	public static function create_from_format( $format, $time, \DateTimeZone $timezone = null ) {
 		/*
 		 * In PHP 5.6 or lower it's not possible to pass in an empty (null) timezone object.
 		 * This will result in a `DateTime::createFromFormat() expects parameter 3 to be DateTimeZone, null given` error.
