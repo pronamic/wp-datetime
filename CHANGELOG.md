@@ -7,6 +7,15 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.1.2] - 2023-01-31
+### Composer
+
+- Changed `php` from `>=8.0` to `>=7.4`.
+
+Full set of changes: [`2.1.1...2.1.2`][2.1.2]
+
+[2.1.2]: https://github.com/pronamic/wp-datetime/compare/v2.1.1...v2.1.2
+
 ## [2.1.1] - 2022-12-28
 
 ### Commits
