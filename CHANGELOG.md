@@ -7,6 +7,15 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.1.3] - 2023-03-02
+### Added
+
+- Add .gitattributes.
+
+Full set of changes: [`2.1.2...2.1.3`][2.1.3]
+
+[2.1.3]: https://github.com/pronamic/wp-datetime/compare/v2.1.2...v2.1.3
+
 ## [2.1.2] - 2023-01-31
 ### Composer
 
