@@ -7,6 +7,16 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.1.4] - 2023-03-27
+
+### Commits
+
+- Set Composer type to `wordpress-plugin`. ([9563b8e](https://github.com/pronamic/wp-datetime/commit/9563b8e4f85c3fd935cff82cd7f94ee16e021870))
+
+Full set of changes: [`2.1.3...2.1.4`][2.1.4]
+
+[2.1.4]: https://github.com/pronamic/wp-datetime/compare/v2.1.3...v2.1.4
+
 ## [2.1.3] - 2023-03-02
 ### Added
 
