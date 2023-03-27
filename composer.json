@@ -1,7 +1,8 @@
 {
 	"name": "pronamic/wp-datetime",
 	"description": "WordPress DateTime library.",
-	"license": "GPL-3.0-or-later" ,
+	"license": "GPL-3.0-or-later",
+	"type": "wordpress-plugin",
 	"autoload": {
 		"psr-4": {
 			"Pronamic\\WordPress\\DateTime\\": "src"
