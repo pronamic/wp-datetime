@@ -37,8 +37,8 @@
 		"php-coveralls/php-coveralls": "^2.4",
 		"php-stubs/wordpress-globals": "^0.2.0",
 		"phpmd/phpmd": "^2.9",
+		"pronamic/pronamic-cli": "^1.0",
 		"pronamic/wp-coding-standards": "^2.0",
-		"pronamic/wp-deployer": "^1.1",
 		"roots/wordpress": "^6.0",
 		"vlucas/phpdotenv": "^2.0",
 		"yoast/phpunit-polyfills": "^1.0"
