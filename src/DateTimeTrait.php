@@ -301,10 +301,10 @@ trait DateTimeTrait {
 	 *
 	 * @link https://www.php.net/manual/en/datetime.createfrominterface.php
 	 * @link https://php.watch/versions/8.0/datetime-immutable-createfrominterface
-	 * @param \DateTimeInterface $object The mutable DateTime object that you want to convert to an immutable version.
+	 * @param \DateTimeInterface $value The mutable DateTime object that you want to convert to an immutable version.
 	 * @return self
 	 */
-	public static function create_from_interface( \DateTimeInterface $object ): self {
-		return new self( $object->format( 'Y-m-d H:i:s.u' ), $object->getTimezone() );
+	public static function create_from_interface( \DateTimeInterface $value ): self {
+		return new self( $value->format( 'Y-m-d H:i:s.u' ), $value->getTimezone() );
 	}
 }
