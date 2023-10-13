@@ -7,6 +7,17 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.1.5] - 2023-10-13
+
+### Commits
+
+- It is recommended not to use reserved keyword "object". ([b5dcf67](https://github.com/pronamic/wp-datetime/commit/b5dcf67de0584953fbb855cb7feec8589b2faf8d))
+- Stand-alone post-increment statement found. ([a5a1a81](https://github.com/pronamic/wp-datetime/commit/a5a1a81bb8dfe5c33c49273ac4a81fb6af051968))
+
+Full set of changes: [`2.1.4...2.1.5`][2.1.5]
+
+[2.1.5]: https://github.com/pronamic/wp-datetime/compare/v2.1.4...v2.1.5
+
 ## [2.1.4] - 2023-03-27
 
 ### Commits
