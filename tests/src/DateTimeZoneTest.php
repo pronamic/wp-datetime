@@ -35,6 +35,9 @@ class DateTimeZoneTest extends TestCase {
 	 * Test get default timezone.
 	 *
 	 * @dataProvider provider_test_get_default
+	 * @param string|null $wp_timezone   WordPress timezone.
+	 * @param float|null  $wp_gmt_offset WordPress GMT offset.
+	 * @param string      $expected      Expected timezone.
 	 */
 	public function test_get_default( $wp_timezone, $wp_gmt_offset, $expected ) {
 		\update_option( 'timezone_string', $wp_timezone );
@@ -63,6 +66,8 @@ class DateTimeZoneTest extends TestCase {
 	 * WordPress stores offset in hours, `DateTimeZone::getOffset` will return in seconds.
 	 *
 	 * @dataProvider provider_test_offsets
+	 * @param float $wp_offset  WordPress offset.
+	 * @param int   $php_offset PHP offset.
 	 */
 	public function test_offsets( $wp_offset, $php_offset ) {
 		\update_option( 'timezone_string', null );

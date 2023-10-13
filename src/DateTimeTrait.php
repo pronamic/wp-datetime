@@ -251,11 +251,17 @@ trait DateTimeTrait {
 	 *
 	 * {@inheritdoc}
 	 *
+	 * @param string            $format              Format.
+	 * @param string            $time                String representing the time.
+	 * @param DateTimeZone|null $timezone Timezone.
 	 * @return self|false
 	 */
 	#[\ReturnTypeWillChange]
-	// phpcs:ignore WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid
-	public static function createFromFormat( $format, $time, $timezone = null ) {
+	public static function createFromFormat( // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid
+		$format,
+		$time,
+		$timezone = null
+	) {
 		return self::create_from_format( $format, $time, $timezone );
 	}
 
