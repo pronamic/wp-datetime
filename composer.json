@@ -27,7 +27,7 @@
 		"php": ">=7.4"
 	},
 	"require-dev": {
-		"automattic/wordbless": "^0.3 || ^0.4",
+		"automattic/wordbless": "^0.4.1",
 		"bamarni/composer-bin-plugin": "^1.4",
 		"koodimonni-language/de_de": "*",
 		"koodimonni-language/en_gb": "*",
