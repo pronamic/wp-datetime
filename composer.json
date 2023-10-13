@@ -40,7 +40,6 @@
 		"pronamic/pronamic-cli": "^1.0",
 		"pronamic/wp-coding-standards": "^2.0",
 		"roots/wordpress": "^6.0",
-		"vlucas/phpdotenv": "^2.0",
 		"yoast/phpunit-polyfills": "^2.0"
 	},
 	"scripts": {
