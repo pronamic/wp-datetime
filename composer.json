@@ -41,7 +41,7 @@
 		"pronamic/wp-coding-standards": "^2.0",
 		"roots/wordpress": "^6.0",
 		"vlucas/phpdotenv": "^2.0",
-		"yoast/phpunit-polyfills": "^1.0"
+		"yoast/phpunit-polyfills": "^2.0"
 	},
 	"scripts": {
 		"coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover build/logs/clover.xml --coverage-text",

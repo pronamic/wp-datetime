@@ -61,7 +61,7 @@ class DateTimeTest extends TestCase {
 	 *
 	 * @return array
 	 */
-	public function provider_test_format_i18n() {
+	public static function provider_test_format_i18n() {
 		return [
 			// Dutch.
 			[ 'nl_NL', 'UTC', null, '2015-05-05 mei 13:00:00 +00:00 UTC UTC', '2015-05-05 15:00:00', 'Europe/Amsterdam' ],
@@ -102,7 +102,7 @@ class DateTimeTest extends TestCase {
 	 *
 	 * @return array
 	 */
-	public function provider_create_from_format() {
+	public static function provider_create_from_format() {
 		return [
 			[ 'j-M-Y H:i:s', '15-Feb-2009 10:00:00', null, '2009-02-15T10:00:00+00:00' ],
 			[ 'j-M-Y H:i:s', '15-Feb-2009 10:00:00', new DateTimeZone( 'Europe/Amsterdam' ), '2009-02-15T10:00:00+01:00' ],

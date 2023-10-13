@@ -53,7 +53,7 @@ class DateTimeZoneTest extends TestCase {
 	 *
 	 * @return array
 	 */
-	public function provider_test_get_default() {
+	public static function provider_test_get_default() {
 		return [
 			[ 'UTC', null, 'UTC' ],
 			[ 'Europe/Amsterdam', null, 'Europe/Amsterdam' ],
@@ -83,7 +83,7 @@ class DateTimeZoneTest extends TestCase {
 	 *
 	 * @return array
 	 */
-	public function provider_test_offsets() {
+	public static function provider_test_offsets() {
 		return [
 			[ 12.75, 45900 ],
 			[ 12.751, 45903 ],
