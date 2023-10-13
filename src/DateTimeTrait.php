@@ -102,7 +102,7 @@ trait DateTimeTrait {
 					$format_new .= $format[ $i ];
 
 					if ( $i < $format_length ) {
-						$i++;
+						++$i;
 					}
 
 					// No break.
@@ -148,7 +148,7 @@ trait DateTimeTrait {
 					$format_new .= $format[ $i ];
 
 					if ( $i < $format_length ) {
-						$i++;
+						++$i;
 					}
 
 					// No break.
