@@ -7,6 +7,16 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.1.7] - 2023-10-30
+
+### Commits
+
+- Updated .gitattributes ([8fbdefa](https://github.com/pronamic/wp-datetime/commit/8fbdefa989366b3965afb4565574a8e9e88eab25))
+
+Full set of changes: [`2.1.6...2.1.7`][2.1.7]
+
+[2.1.7]: https://github.com/pronamic/wp-datetime/compare/v2.1.6...v2.1.7
+
 ## [2.1.6] - 2023-10-30
 
 ### Commits
