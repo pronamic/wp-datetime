@@ -7,6 +7,18 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.1.6] - 2023-10-30
+
+### Commits
+
+- Updated composer.json ([7ab2db5](https://github.com/pronamic/wp-datetime/commit/7ab2db5184322a31fd5b24f2d6e720fed24d3e6d))
+- Removed Grunt. ([1e3bf5c](https://github.com/pronamic/wp-datetime/commit/1e3bf5c213d14b4eae36e49b9bc785d7f5058086))
+- Added `if ( ! defined( 'ABSPATH' ) )`. ([81c818a](https://github.com/pronamic/wp-datetime/commit/81c818ae98a63222bf3f0f89f275b0317eb85caf))
+
+Full set of changes: [`2.1.5...2.1.6`][2.1.6]
+
+[2.1.6]: https://github.com/pronamic/wp-datetime/compare/v2.1.5...v2.1.6
+
 ## [2.1.5] - 2023-10-13
 
 ### Commits
