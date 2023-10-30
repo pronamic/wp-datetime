@@ -9,4 +9,12 @@
 	<rule ref="PronamicWP">
 
 	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="pronamic-datetime" />
+			</property>
+		</properties>
+	</rule>
 </ruleset>
