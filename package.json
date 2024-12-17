@@ -1,6 +1,6 @@
 {
 	"name": "wp-datetime",
-	"version": "2.1.7",
+	"version": "2.1.8",
 	"description": "WordPress DateTime library.",
 	"repository": {
 		"type": "git",

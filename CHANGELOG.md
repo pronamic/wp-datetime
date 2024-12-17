@@ -7,6 +7,18 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.1.8] - 2024-12-17
+
+### Commits
+
+- Require only WordPress core translations. ([fa8dc5b](https://github.com/pronamic/wp-datetime/commit/fa8dc5b17bbea3d49cf13d189aaf7258e88d7e09))
+- Merge pull request #1 from pronamic/happy-2024 ([97656de](https://github.com/pronamic/wp-datetime/commit/97656de86674525351b4008d3269696ccc02e8d9))
+- Happy 2024. ([a6cc2b4](https://github.com/pronamic/wp-datetime/commit/a6cc2b41cee03a7dca502baf234b97be11d5cacc))
+
+Full set of changes: [`2.1.7...2.1.8`][2.1.8]
+
+[2.1.8]: https://github.com/pronamic/wp-datetime/compare/v2.1.7...v2.1.8
+
 ## [2.1.7] - 2023-10-30
 
 ### Commits
