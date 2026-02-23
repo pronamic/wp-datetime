@@ -110,5 +110,5 @@ interface DateTimeInterface extends \DateTimeInterface {
 	 * @param \DateTimeZone $timezone A DateTimeZone object representing the desired time zone.
 	 * @return self|false
 	 */
-	public static function create_from_format( $format, $time, \DateTimeZone $timezone = null );
+	public static function create_from_format( $format, $time, ?\DateTimeZone $timezone = null );
 }
