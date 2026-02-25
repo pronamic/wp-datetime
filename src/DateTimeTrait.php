@@ -273,9 +273,9 @@ trait DateTimeTrait {
 	 *
 	 * @since 1.0.1
 	 *
-	 * @param string        $format   Format accepted by date().
-	 * @param string        $time     String representing the time.
-	 * @param \DateTimeZone $timezone A DateTimeZone object representing the desired time zone.
+	 * @param string             $format   Format accepted by date().
+	 * @param string             $time     String representing the time.
+	 * @param \DateTimeZone|null $timezone A DateTimeZone object representing the desired time zone.
 	 *
 	 * @return self|false
 	 */
