@@ -273,14 +273,14 @@ trait DateTimeTrait {
 	 *
 	 * @since 1.0.1
 	 *
-	 * @param string        $format   Format accepted by date().
-	 * @param string        $time     String representing the time.
-	 * @param \DateTimeZone $timezone A DateTimeZone object representing the desired time zone.
+	 * @param string             $format   Format accepted by date().
+	 * @param string             $time     String representing the time.
+	 * @param \DateTimeZone|null $timezone A DateTimeZone object representing the desired time zone.
 	 *
 	 * @return self|false
 	 */
 	#[\ReturnTypeWillChange]
-	public static function create_from_format( $format, $time, \DateTimeZone $timezone = null ) {
+	public static function create_from_format( $format, $time, ?\DateTimeZone $timezone = null ) {
 		/*
 		 * In PHP 5.6 or lower it's not possible to pass in an empty (null) timezone object.
 		 * This will result in a `DateTime::createFromFormat() expects parameter 3 to be DateTimeZone, null given` error.

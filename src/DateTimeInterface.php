@@ -105,10 +105,10 @@ interface DateTimeInterface extends \DateTimeInterface {
 	 * @link https://www.php.net/manual/en/datetime.createfromformat.php
 	 * @link https://www.php.net/manual/en/datetimeimmutable.createfromformat.php
 	 *
-	 * @param string        $format   Format accepted by date().
-	 * @param string        $time     String representing the time.
-	 * @param \DateTimeZone $timezone A DateTimeZone object representing the desired time zone.
+	 * @param string             $format   Format accepted by date().
+	 * @param string             $time     String representing the time.
+	 * @param \DateTimeZone|null $timezone A DateTimeZone object representing the desired time zone.
 	 * @return self|false
 	 */
-	public static function create_from_format( $format, $time, \DateTimeZone $timezone = null );
+	public static function create_from_format( $format, $time, ?\DateTimeZone $timezone = null );
 }
