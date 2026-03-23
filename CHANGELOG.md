@@ -7,6 +7,21 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.2.0] - 2026-03-23
+
+### Fixed
+
+- Fixed PHP 8.5 deprecation notices in `DateTimeInterface::create_from_format` by explicitly using `?\DateTimeZone $timezone = null`.
+- Fixed PHP 8.5 deprecation notices in `DateTimeTrait::create_from_format` by explicitly using `?\DateTimeZone $timezone = null`.
+
+### Changed
+
+- Updated PHPDoc for `create_from_format` in `DateTimeInterface` and `DateTimeTrait` to document nullable timezone input (`\DateTimeZone|null`).
+
+Full set of changes: [`2.1.8...2.2.0`][2.2.0]
+
+[2.2.0]: https://github.com/pronamic/wp-datetime/compare/v2.1.8...v2.2.0
+
 ## [2.1.8] - 2024-12-17
 
 ### Commits
@@ -151,7 +166,7 @@ Full set of changes: [`2.0.3...2.1.0`][2.1.0]
 ## 1.0.0
 - First release.
 
-[unreleased]: https://github.com/pronamic/wp-datetime/compare/2.0.0...HEAD
+[unreleased]: https://github.com/pronamic/wp-datetime/compare/v2.2.0...HEAD
 [2.0.3]: https://github.com/pronamic/wp-datetime/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/pronamic/wp-datetime/compare/2.0.1...2.0.2
 [2.0.0]: https://github.com/pronamic/wp-datetime/compare/1.2.2...2.0.0
